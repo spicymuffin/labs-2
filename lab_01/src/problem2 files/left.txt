@@ -1,0 +1,3 @@
+Position of A: (0, 4)
+Position of B: (-11, 2)
+Position of C: (0, -1)
