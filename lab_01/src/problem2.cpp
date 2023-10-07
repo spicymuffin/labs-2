@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <iomanip>
+
 using namespace std;
 
 /**********************/
@@ -12,7 +13,7 @@ using namespace std;
 /* NAME: Luigi Cussigh*/
 /**********************/
 
-int main(int argc, char* argv[])
+int main()
 {
     int loopNum;
 
@@ -93,13 +94,13 @@ int main(int argc, char* argv[])
                 }
                 else
                 {
-                    //if direction is invalid show error msg
+                    // if direction is invalid show error msg
                     cout << "Wrong movement in iteration " << i << ", movement " << j << endl;
                 }
             }
             else
             {
-                //if target is invalid (flag raised) show error msg
+                // if target is invalid (flag raised) show error msg
                 cout << "Wrong movement in iteration " << i << ", movement " << j << endl;
             }
         }

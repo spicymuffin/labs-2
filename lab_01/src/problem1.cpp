@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <iomanip>
+
 using namespace std;
 
 /**********************/
@@ -14,7 +15,7 @@ using namespace std;
 
 double F(double x, int a, int b, int c);
 
-int main(int argc, char* argv[)
+int main()
 {
     int loopNum;
 
@@ -46,7 +47,7 @@ int main(int argc, char* argv[)
 
         // by FTC pt. 2:
         // write to file.
-        outfile << F(x0, a, b, c) - F(x1, a, b, c) << endl;
+        outfile << abs(F(x0, a, b, c) - F(x1, a, b, c)) << endl;
     }
 
     outfile.close();
