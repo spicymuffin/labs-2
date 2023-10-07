@@ -47,7 +47,7 @@ int main()
 
         // by FTC pt. 2:
         // write to file.
-        outfile << abs(F(x0, a, b, c) - F(x1, a, b, c)) << endl;
+        outfile << F(x1, a, b, c) - F(x0, a, b, c) << endl;
     }
 
     outfile.close();

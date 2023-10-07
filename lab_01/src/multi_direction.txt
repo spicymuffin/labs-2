@@ -1,0 +1,21 @@
+2
+0 0
+0 0
+0 0
+7
+a j
+a k
+a l
+a h
+a j
+a k
+a l
+0 0
+0 0
+0 0
+5
+b l
+c h
+a k
+c j
+b j

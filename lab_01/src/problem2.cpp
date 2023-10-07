@@ -85,12 +85,12 @@ int main()
                 else if (dir == 'j')
                 {
                     *chosen_target_x += 0;
-                    *chosen_target_y += 1;
+                    *chosen_target_y += -1;
                 }
                 else if (dir == 'k')
                 {
                     *chosen_target_x += 0;
-                    *chosen_target_y += -1;
+                    *chosen_target_y += 1;
                 }
                 else
                 {
