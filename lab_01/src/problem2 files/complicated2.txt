@@ -1,0 +1,4 @@
+Wrong movement in iteration 0, movement 1
+Position of A: (-5, -1)
+Position of B: (-1, -6)
+Position of C: (0, -3)

@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <iomanip>
+
 using namespace std;
 
 /**********************/
@@ -46,7 +47,7 @@ int main()
 
         // by FTC pt. 2:
         // write to file.
-        outfile << F(x0, a, b, c) - F(x1, a, b, c) << endl;
+        outfile << F(x1, a, b, c) - F(x0, a, b, c) << endl;
     }
 
     outfile.close();

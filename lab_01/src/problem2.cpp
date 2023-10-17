@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <iomanip>
+
 using namespace std;
 
 /**********************/
@@ -84,22 +85,22 @@ int main()
                 else if (dir == 'j')
                 {
                     *chosen_target_x += 0;
-                    *chosen_target_y += 1;
+                    *chosen_target_y += -1;
                 }
                 else if (dir == 'k')
                 {
                     *chosen_target_x += 0;
-                    *chosen_target_y += -1;
+                    *chosen_target_y += 1;
                 }
                 else
                 {
-                    //if direction is invalid show error msg
+                    // if direction is invalid show error msg
                     cout << "Wrong movement in iteration " << i << ", movement " << j << endl;
                 }
             }
             else
             {
-                //if target is invalid (flag raised) show error msg
+                // if target is invalid (flag raised) show error msg
                 cout << "Wrong movement in iteration " << i << ", movement " << j << endl;
             }
         }
