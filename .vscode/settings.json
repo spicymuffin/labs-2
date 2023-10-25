@@ -1,5 +1,10 @@
 {
     "files.associations": {
-        "functional": "cpp"
-    }
+        "*.py": "python",
+        "functional": "cpp",
+        "ostream": "cpp",
+        "iostream": "cpp",
+        "memory": "cpp"
+    },
+    "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }
