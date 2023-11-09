@@ -1,0 +1,7 @@
+6
+i
+Good
+\esc
+:
+w
+\enter

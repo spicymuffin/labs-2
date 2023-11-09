@@ -1,0 +1,7 @@
+6
+o
+"GoodMoring"
+\esc
+:
+w
+\enter

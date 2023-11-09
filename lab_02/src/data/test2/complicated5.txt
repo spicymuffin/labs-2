@@ -1,0 +1,10 @@
+9
+a
+good
+job
+\esc
+:
+q
+well
+done!
+\enter

@@ -1,0 +1,9 @@
+8
+a
+i
+58876
+didid
+\esc
+:
+w
+\enter

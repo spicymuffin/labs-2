@@ -1,0 +1,11 @@
+10
+a
+maybe
+forget
+to
+save
+the
+contents
+\enter
+\esc
+:

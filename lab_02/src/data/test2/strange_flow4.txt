@@ -1,0 +1,15 @@
+14
+a
+not
+\esc
+:
+wq
+q
+\enter
+a
+good
+maybe?
+\esc
+:
+w
+\enter

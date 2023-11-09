@@ -1,0 +1,13 @@
+12
+a
+Good!
+\esc
+:
+q
+\enter
+i
+goodMorning
+\esc
+:
+w
+\enter

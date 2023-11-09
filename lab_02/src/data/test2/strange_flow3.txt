@@ -1,0 +1,11 @@
+10
+:w
+:
+w
+it
+will
+\enter
+a
+be
+fine!
+\esc

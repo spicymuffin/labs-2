@@ -1,0 +1,17 @@
+16
+:
+w
+q
+\enter
+SoundGood
+i
+good
+moring
+?
+\esc
+\enter
+\enter
+\enter
+:
+w
+\enter
