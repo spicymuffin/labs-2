@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <string>
 
 using namespace std;
@@ -27,7 +26,7 @@ public:
         cout << "total hotdogs sold: " << hotDogsSoldTotal << endl;
     }
 
-    static int getTotalSold() { return hotDogsSoldTotal; };
+    const static int getTotalSold() { return hotDogsSoldTotal; };
 
     static void justSoldTotal() { hotDogsSoldTotal += 1; };
 
