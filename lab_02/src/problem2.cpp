@@ -174,6 +174,7 @@ void MiniVimEditor::run(const string &Command)
         else if (Command == "w")
         {
             // save file to disk as output2.txt
+	    this->FMgr.save();
         }
         else if (Command == "q")
         {
