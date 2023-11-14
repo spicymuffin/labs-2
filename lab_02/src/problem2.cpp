@@ -161,7 +161,8 @@ void MiniVimEditor::run(const string &Command)
         }
         else
         {
-            // write "command" to file
+            // write "command" to buffer
+            this->FMgr.write(Command);
         }
     }
     else if (Mode == EX_MODE)
@@ -176,7 +177,7 @@ void MiniVimEditor::run(const string &Command)
         }
         else if (Command == "q")
         {
-            
+            SwitchMode(LastMode);
         }
     }
 }
