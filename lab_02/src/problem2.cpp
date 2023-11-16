@@ -82,7 +82,7 @@ public:
     /// Run editor by parsing given command
     void run(const string &Command);
 
-    void SwitchMode(static int TargetMode)
+    void SwitchMode(int TargetMode)
     {
         LastMode = Mode;
         Mode = TargetMode;
@@ -115,6 +115,7 @@ int main()
     {
         string Command;
         getline(Ifs, Command);
+        cout << "command: " << Command << endl;
         Editor.run(Command);
     }
 
@@ -123,17 +124,17 @@ int main()
 //---------------------------------------------------------------------------
 void FileManager::write(const string &Content)
 {
-    // TOOD: Implement write function
+    Buffer += Content;
 }
 //---------------------------------------------------------------------------
 void FileManager::save()
 {
-    // TODO: Implement save function
+    Ofs << Buffer;
 }
 //---------------------------------------------------------------------------
 void FileManager::clear()
 {
-    // TODO: Implement clear function
+    Buffer = "";
 }
 //---------------------------------------------------------------------------
 void MiniVimEditor::run(const string &Command)
@@ -142,7 +143,7 @@ void MiniVimEditor::run(const string &Command)
     {
         if (Command == "i" || Command == "o" || Command == "a")
         {
-            SwitchMode(NORMAL_MODE);
+            SwitchMode(INSERT_MODE);
         }
         else if (Command == ":")
         {
@@ -161,7 +162,8 @@ void MiniVimEditor::run(const string &Command)
         }
         else
         {
-            // write "command" to file
+            // write "command" to buffer
+            this->FMgr.write(Command);
         }
     }
     else if (Mode == EX_MODE)
@@ -173,10 +175,12 @@ void MiniVimEditor::run(const string &Command)
         else if (Command == "w")
         {
             // save file to disk as output2.txt
+            this->FMgr.save();
         }
         else if (Command == "q")
         {
-            
+            this->FMgr.clear();
+            SwitchMode(LastMode);
         }
     }
 }
