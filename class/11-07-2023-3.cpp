@@ -26,11 +26,12 @@ public:
     const string getName() { return name; };
     const int getNumClasses() { return numClasses; };
     const string *getClassList() { return classList; };
+    const string getClassOfIndex(int _index) { return *(classList + _index); }
 
     void outputCourses()
     {
         cout << "classes for " << name << ":" << endl;
-        for (int i = 0; i < numClasses; i++)
+        for (int i = 0; i < numClasses; ++i)
         {
             cout << "class " << i << ": " << classList[i] << endl;
         }
@@ -44,7 +45,7 @@ public:
         cin >> numClasses;
         classList = new string[numClasses];
         string *access_ptr = classList;
-        for (int i = 0; i < numClasses; i++)
+        for (int i = 0; i < numClasses; ++i)
         {
             string className;
             cout << "class name: ";
@@ -55,37 +56,31 @@ public:
 
     void resetCourses()
     {
-        delete classList;
+        delete[] classList;
         classList = NULL;
         numClasses = 0;
     }
 
-    PFArrayD &PFArrayD::operator=(const PFArrayD &rightSide)
-    {
-        if (capacity != rightSide.capacity)
-        {
-            delete[] a;
-            a = new double[rightSide.capacity];
-        }
-
-        capacity = rightSide.capacity;
-        used = rightSide.used;
-        for (int i = 0; i < used; i++)
-            a[i] = rightSide.a[i];
-
-        return *this;
-    }
-    Student Student::operator=(const Student &studentObject)
+    Student &operator=(Student &studentObject)
     {
         name = studentObject.getName();
         numClasses = studentObject.getNumClasses();
-        classList =
+        if (classList != NULL)
+        {
+            delete[] classList;
+        }
+        classList = new string[numClasses];
+        for (int i = 0; i < numClasses; ++i)
+        {
+            classList[i] = studentObject.getClassOfIndex(i);
+        }
+        return *this;
     }
 
     ~Student()
     {
-        delete classList;
-        // delete numClasses;
+        // delete numClasses
+        delete[] classList;
     }
 
 private:
@@ -96,8 +91,17 @@ private:
 
 int main(int argc, char *argv[])
 {
-    Student student1;
-    student1.inputData();
-    student1.outputCourses();
+    Student st1, st2, st3;
+    st1.inputData();
+    cout << "initial:" << endl;
+    st1.outputCourses();
+    st2.outputCourses();
+    st2 = st1;
+    cout << "after assignment:" << endl;
+    st2.outputCourses();
+    st2.resetCourses();
+    cout << "after reset:" << endl;
+    st2.outputCourses();
+
     return 0;
 }
