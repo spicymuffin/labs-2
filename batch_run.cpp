@@ -4,23 +4,53 @@
 #include <cstdlib>
 #include <iomanip>
 #include <string>
+#include <chrono>
+#include <thread>
+#include <filesystem>
 
 using namespace std;
 
-int main()
+namespace fs = std::filesystem;
+
+int main(int argc, char *argv[])
 {
-    string relativeTestCaseDirectory;
-    string relativeExecutableDirectory;
+    const string testCaseDirectory = "C:\\Users\\luigi\\Desktop\\github\\labs-2\\lab_02\\data\\test1";
+    const string outputDirectory = "C:\\Users\\luigi\\Desktop\\github\\labs-2\\lab_02\\src\\problem1_outputs";
+    const string executablePath = "C:\\Users\\luigi\\Desktop\\github\\labs-2\\lab_02\\src\\problem1_cincout.exe";
 
-    ofstream outfile;
-    outfile.open("output1.txt");
+    // cout << "test case directory: ";
+    // cin >> testCaseDirectory;
+    // cout << "output directory: ";
+    // cin >> outputDirectory;
+    // cout << "executable path: ";
+    // cin >> executablePath;
 
-    cin >> relativeExecutableDirectory;
-    relativeExecutableDirectory += "<input1.txt >output1.txt";
-    const char *c = relativeExecutableDirectory.c_str();
-    std::system(c);
+    cout << "running test cases..." << endl;
+    int i = 0;
+    for (const auto &entry : fs::directory_iterator(testCaseDirectory))
+    {
+        string path = entry.path().string();
+        cout << "running testcase #" << i << ": " << path << endl;
+        string name = path.substr(testCaseDirectory.size() + 1);
 
-    outfile.close();
+        string testcaseInputPath = path;
+        string testcaseOutputPath = outputDirectory + "\\" + name;
+
+        string executeCommand = executablePath + " < " + testcaseInputPath + " > " + testcaseOutputPath;
+        cout << executeCommand << endl;
+
+        ofstream outfile;
+        outfile.open(testcaseOutputPath);
+        outfile.close();
+
+        const char *c = executeCommand.c_str();
+
+        int code = system(c);
+
+        cout << "CODE: " << code << endl;
+
+        ++i;
+    }
 
     return 0;
 }

@@ -65,10 +65,8 @@ public:
     {
         name = studentObject.getName();
         numClasses = studentObject.getNumClasses();
-        if (classList != NULL)
-        {
-            delete[] classList;
-        }
+        delete[] classList;
+
         classList = new string[numClasses];
         for (int i = 0; i < numClasses; ++i)
         {

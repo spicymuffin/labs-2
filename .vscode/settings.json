@@ -21,6 +21,7 @@
         "xlocinfo": "cpp",
         "xmemory": "cpp",
         "xutility": "cpp",
-        "xiosbase": "cpp"
+        "xiosbase": "cpp",
+        "filesystem": "cpp"
     }
 }
