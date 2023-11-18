@@ -1,0 +1,1 @@
+int\smain(void)\n{\sreturn\s0;\s}\n

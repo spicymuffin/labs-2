@@ -13,9 +13,9 @@ namespace fs = std::filesystem;
 
 int main(int argc, char *argv[])
 {
-    const string testCaseDirectory = "~/labs-2/lab_02/data/test1";
-    const string outputDirectory = "~/labs-2/lab_02/src/problem1_outputs";
-    const string executablePath = "~/labs-2/lab_02/src/problem1_cincout.exe";
+    const string testCaseDirectory = "/home/luigi-linux/labs-2/lab_02/data/test2";
+    const string outputDirectory = "/home/luigi-linux/labs-2/lab_02/src/problem2_outputs";
+    const string executablePath = "/home/luigi-linux/labs-2/lab_02/src/problem2_cincout.exe";
 
     // cout << "test case directory: ";
     // cin >> testCaseDirectory;
@@ -33,13 +33,14 @@ int main(int argc, char *argv[])
         string name = path.substr(testCaseDirectory.size() + 1);
 
         string testcaseInputPath = path;
-        string testcaseOutputPath = outputDirectory + "\\" + name;
+        string testcaseOutputPath = outputDirectory + "/" + name;
 
-        string executeCommand = executablePath + " < " + testcaseInputPath + " > " + testcaseOutputPath;
+        string executeCommand = executablePath + " <" + testcaseInputPath + " >" + testcaseOutputPath;
         cout << executeCommand << endl;
 
         ofstream outfile;
         outfile.open(testcaseOutputPath);
+        outfile << "";
         outfile.close();
 
         const char *c = executeCommand.c_str();

@@ -28,13 +28,13 @@ const string OutputFilePath = "output1.txt";
 //---------------------------------------------------------------------------
 int main(void)
 {
-    ifstream Ifs{InputFilePath};
-    if (Ifs.fail())
-    {
-        cerr << "Failed to open input file\n";
-        return 0;
-    }
-    ofstream Ofs{OutputFilePath};
+    // ifstream Ifs{InputFilePath};
+    // if (Ifs.fail())
+    // {
+    //     cerr << "Failed to open input file\n";
+    //     return 0;
+    // }
+    // ofstream Ofs{OutputFilePath};
 
     int C = 0;
     int N = 0;
