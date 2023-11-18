@@ -43,13 +43,13 @@ class FileManager
 {
 private:
     /// The output file's name
-    ostream &Ofs;
+    ofstream &Ofs;
     /// The buffer of the output file to be saved.
     string Buffer = "";
 
 public:
     /// The constructor
-    explicit FileManager(ostream &InOfs) : Ofs{InOfs} {}
+    explicit FileManager(ofstream &InOfs) : Ofs{InOfs} {}
 
     /// Write new content to file manager's buffer
     void write(const string &Content);
@@ -90,30 +90,30 @@ public:
 //---------------------------------------------------------------------------
 int main()
 {
-    // ifstream Ifs{InputFilePath};
-    // if (Ifs.fail())
-    // {
-    //     cerr << "Failed to open input file.\n";
-    //     return 0;
-    // }
-    // ofstream Ofs{OutputFilePath};
+    ifstream Ifs{InputFilePath};
+    if (Ifs.fail())
+    {
+        cerr << "Failed to open input file.\n";
+        return 0;
+    }
+    ofstream Ofs{OutputFilePath};
 
     // Get the number of iterations
     int IterCount;
-    cin >> IterCount;
+    Ifs >> IterCount;
 
     // There's still '\n' left, so to use getline() this code is needed.
     string Tmp;
-    getline(cin, Tmp);
+    getline(Ifs, Tmp);
 
-    FileManager FMgr{cout};
+    FileManager FMgr{Ofs};
     MiniVimEditor Editor{FMgr};
 
     // Run Mini-Vim editor
     for (int I = 0; I < IterCount; ++I)
     {
         string Command;
-        getline(cin, Command);
+        getline(Ifs, Command);
         Editor.run(Command);
     }
 
@@ -122,17 +122,19 @@ int main()
 //---------------------------------------------------------------------------
 void FileManager::write(const string &Content)
 {
+    // string concat
     Buffer += Content;
 }
 //---------------------------------------------------------------------------
-void FileManager::save() // saves buffer to file
+void FileManager::save()
 {
-    // save to file
+    // use output filestream
     Ofs << Buffer;
 }
 //---------------------------------------------------------------------------
-void FileManager::clear() // clears buffer
+void FileManager::clear()
 {
+    // set buffer to an empty string
     Buffer = "";
 }
 //---------------------------------------------------------------------------
@@ -194,6 +196,7 @@ void MiniVimEditor::run(const string &Command)
 
 void MiniVimEditor::SwitchMode(int TargetMode)
 {
+    // switch to target mode
     Mode = TargetMode;
 }
 //---------------------------------------------------------------------------

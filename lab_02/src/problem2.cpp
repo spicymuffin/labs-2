@@ -73,8 +73,6 @@ private:
     FileManager &FMgr;
     /// The current mode state
     int Mode = NORMAL_MODE;
-    /// The previous mode state
-    int LastMode = NORMAL_MODE;
 
 public:
     /// The constructor
@@ -82,11 +80,12 @@ public:
     /// Run editor by parsing given command
     void run(const string &Command);
 
-    void SwitchMode(int TargetMode)
-    {
-        LastMode = Mode;
-        Mode = TargetMode;
-    }
+    /**
+     * @brief switches mode of minivimeditor to TargetMode
+     *
+     * @param TargetMode target mode
+     */
+    void SwitchMode(int TargetMode);
 };
 //---------------------------------------------------------------------------
 int main()
@@ -115,7 +114,6 @@ int main()
     {
         string Command;
         getline(Ifs, Command);
-        cout << "command: " << Command << endl;
         Editor.run(Command);
     }
 
@@ -124,16 +122,19 @@ int main()
 //---------------------------------------------------------------------------
 void FileManager::write(const string &Content)
 {
+    // string concat
     Buffer += Content;
 }
 //---------------------------------------------------------------------------
 void FileManager::save()
 {
+    // use output filestream
     Ofs << Buffer;
 }
 //---------------------------------------------------------------------------
 void FileManager::clear()
 {
+    //set buffer to an empty string
     Buffer = "";
 }
 //---------------------------------------------------------------------------
@@ -143,10 +144,12 @@ void MiniVimEditor::run(const string &Command)
     {
         if (Command == "i" || Command == "o" || Command == "a")
         {
+            // switch to insert mode
             SwitchMode(INSERT_MODE);
         }
         else if (Command == ":")
         {
+            // switch to ex mode
             SwitchMode(EX_MODE);
         }
         else
@@ -158,11 +161,12 @@ void MiniVimEditor::run(const string &Command)
     {
         if (Command == "\\esc")
         {
+            // swtich to normal mode
             SwitchMode(NORMAL_MODE);
         }
         else
         {
-            // write "command" to buffer
+            // write "command"(contetnts) to buffer
             this->FMgr.write(Command);
         }
     }
@@ -176,12 +180,22 @@ void MiniVimEditor::run(const string &Command)
         {
             // save file to disk as output2.txt
             this->FMgr.save();
+            // clear buffer (we saved its contents) ???
+            // i'll leave it out since
+            // there is nothing said about this in the assignment
+            // this->FMgr.clear();
         }
         else if (Command == "q")
         {
+            // clearing buffer returns user to last saved state, since
+            // last saved state is the state after we used command "w"
             this->FMgr.clear();
-            SwitchMode(LastMode);
         }
     }
+}
+
+void MiniVimEditor::SwitchMode(int TargetMode)
+{
+    Mode = TargetMode;
 }
 //---------------------------------------------------------------------------
