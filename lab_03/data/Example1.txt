@@ -1,0 +1,172 @@
+Choose a Pokemon(0~4): 2
+Choose another Pokemon(0~4): 4
++-------------------------------------------------------------+
+| 2023000000 OOP Computer Science                             |
++------------------------------+------------------------------+
+| Eevee (*)                    | Palkia                       |
+| Type: Normal                 | Type: Water                  |
+| HP: 55                       | HP: 90                       |
++------------------------------+------------------------------+
+| (0) Tackle                   | (0) Hydro Pump               |
+|     - Type: Normal           |     - Type: Water            |
+|     - Damage: 4              |     - Damage: 12             |
+|     - Count: 5(5)            |     - Count: 10(10)          |
+| (1) Sand Attack              | (1) Earth Power              |
+|     - Type: Ground           |     - Type: Ground           |
+|     - Damage: 8              |     - Damage: 15             |
+|     - Count: 3(3)            |     - Count: 10(10)          |
+| (2) Bite                     | (2) Surf                     |
+|     - Type: Normal           |     - Type: Water            |
+|     - Damage: 12             |     - Damage: 13             |
+|     - Count: 3(3)            |     - Count: 10(10)          |
+| (3) Rain Dance               | (3) Spatial Rend             |
+|     - Type: Water            |     - Type: Normal           |
+|     - Damage: 15             |     - Damage: 30             |
+|     - Count: 1(1)            |     - Count: 10(10)          |
++------------------------------+------------------------------+
+Choose a skill (0~3): 2
+Eevee used Bite.
+The attack was effective.
+
++-------------------------------------------------------------+
+| 2023000000 OOP Computer Science                             |
++------------------------------+------------------------------+
+| Eevee                        | Palkia (*)                   |
+| Type: Normal                 | Type: Water                  |
+| HP: 55                       | HP: 78                       |
++------------------------------+------------------------------+
+| (0) Tackle                   | (0) Hydro Pump               |
+|     - Type: Normal           |     - Type: Water            |
+|     - Damage: 4              |     - Damage: 12             |
+|     - Count: 5(5)            |     - Count: 10(10)          |
+| (1) Sand Attack              | (1) Earth Power              |
+|     - Type: Ground           |     - Type: Ground           |
+|     - Damage: 8              |     - Damage: 15             |
+|     - Count: 3(3)            |     - Count: 10(10)          |
+| (2) Bite                     | (2) Surf                     |
+|     - Type: Normal           |     - Type: Water            |
+|     - Damage: 12             |     - Damage: 13             |
+|     - Count: 2(3)            |     - Count: 10(10)          |
+| (3) Rain Dance               | (3) Spatial Rend             |
+|     - Type: Water            |     - Type: Normal           |
+|     - Damage: 15             |     - Damage: 30             |
+|     - Count: 1(1)            |     - Count: 10(10)          |
++------------------------------+------------------------------+
+Choose a skill (0~3): 1
+Palkia used Earth Power.
+The attack was effective.
+
++-------------------------------------------------------------+
+| 2023000000 OOP Computer Science                             |
++------------------------------+------------------------------+
+| Eevee (*)                    | Palkia                       |
+| Type: Normal                 | Type: Water                  |
+| HP: 40                       | HP: 78                       |
++------------------------------+------------------------------+
+| (0) Tackle                   | (0) Hydro Pump               |
+|     - Type: Normal           |     - Type: Water            |
+|     - Damage: 4              |     - Damage: 12             |
+|     - Count: 5(5)            |     - Count: 10(10)          |
+| (1) Sand Attack              | (1) Earth Power              |
+|     - Type: Ground           |     - Type: Ground           |
+|     - Damage: 8              |     - Damage: 15             |
+|     - Count: 3(3)            |     - Count: 9(10)           |
+| (2) Bite                     | (2) Surf                     |
+|     - Type: Normal           |     - Type: Water            |
+|     - Damage: 12             |     - Damage: 13             |
+|     - Count: 2(3)            |     - Count: 10(10)          |
+| (3) Rain Dance               | (3) Spatial Rend             |
+|     - Type: Water            |     - Type: Normal           |
+|     - Damage: 15             |     - Damage: 30             |
+|     - Count: 1(1)            |     - Count: 10(10)          |
++------------------------------+------------------------------+
+Choose a skill (0~3): 0
+Eevee used Tackle.
+The attack was effective.
+
++-------------------------------------------------------------+
+| 2023000000 OOP Computer Science                             |
++------------------------------+------------------------------+
+| Eevee                        | Palkia (*)                   |
+| Type: Normal                 | Type: Water                  |
+| HP: 40                       | HP: 74                       |
++------------------------------+------------------------------+
+| (0) Tackle                   | (0) Hydro Pump               |
+|     - Type: Normal           |     - Type: Water            |
+|     - Damage: 4              |     - Damage: 12             |
+|     - Count: 4(5)            |     - Count: 10(10)          |
+| (1) Sand Attack              | (1) Earth Power              |
+|     - Type: Ground           |     - Type: Ground           |
+|     - Damage: 8              |     - Damage: 15             |
+|     - Count: 3(3)            |     - Count: 9(10)           |
+| (2) Bite                     | (2) Surf                     |
+|     - Type: Normal           |     - Type: Water            |
+|     - Damage: 12             |     - Damage: 13             |
+|     - Count: 2(3)            |     - Count: 10(10)          |
+| (3) Rain Dance               | (3) Spatial Rend             |
+|     - Type: Water            |     - Type: Normal           |
+|     - Damage: 15             |     - Damage: 30             |
+|     - Count: 1(1)            |     - Count: 10(10)          |
++------------------------------+------------------------------+
+Choose a skill (0~3): 3
+Palkia used Spatial Rend.
+The attack was effective.
+
++-------------------------------------------------------------+
+| 2023000000 OOP Computer Science                             |
++------------------------------+------------------------------+
+| Eevee (*)                    | Palkia                       |
+| Type: Normal                 | Type: Water                  |
+| HP: 10                       | HP: 74                       |
++------------------------------+------------------------------+
+| (0) Tackle                   | (0) Hydro Pump               |
+|     - Type: Normal           |     - Type: Water            |
+|     - Damage: 4              |     - Damage: 12             |
+|     - Count: 4(5)            |     - Count: 10(10)          |
+| (1) Sand Attack              | (1) Earth Power              |
+|     - Type: Ground           |     - Type: Ground           |
+|     - Damage: 8              |     - Damage: 15             |
+|     - Count: 3(3)            |     - Count: 9(10)           |
+| (2) Bite                     | (2) Surf                     |
+|     - Type: Normal           |     - Type: Water            |
+|     - Damage: 12             |     - Damage: 13             |
+|     - Count: 2(3)            |     - Count: 10(10)          |
+| (3) Rain Dance               | (3) Spatial Rend             |
+|     - Type: Water            |     - Type: Normal           |
+|     - Damage: 15             |     - Damage: 30             |
+|     - Count: 1(1)            |     - Count: 9(10)           |
++------------------------------+------------------------------+
+Choose a skill (0~3): 2
+Eevee used Bite.
+The attack was effective.
+
++-------------------------------------------------------------+
+| 2023000000 OOP Computer Science                             |
++------------------------------+------------------------------+
+| Eevee                        | Palkia (*)                   |
+| Type: Normal                 | Type: Water                  |
+| HP: 10                       | HP: 62                       |
++------------------------------+------------------------------+
+| (0) Tackle                   | (0) Hydro Pump               |
+|     - Type: Normal           |     - Type: Water            |
+|     - Damage: 4              |     - Damage: 12             |
+|     - Count: 4(5)            |     - Count: 10(10)          |
+| (1) Sand Attack              | (1) Earth Power              |
+|     - Type: Ground           |     - Type: Ground           |
+|     - Damage: 8              |     - Damage: 15             |
+|     - Count: 3(3)            |     - Count: 9(10)           |
+| (2) Bite                     | (2) Surf                     |
+|     - Type: Normal           |     - Type: Water            |
+|     - Damage: 12             |     - Damage: 13             |
+|     - Count: 1(3)            |     - Count: 10(10)          |
+| (3) Rain Dance               | (3) Spatial Rend             |
+|     - Type: Water            |     - Type: Normal           |
+|     - Damage: 15             |     - Damage: 30             |
+|     - Count: 1(1)            |     - Count: 9(10)           |
++------------------------------+------------------------------+
+Choose a skill (0~3): 1
+Palkia used Earth Power.
+The attack was effective.
+
+===============================================================
+Match Result: Palkia defeats Eevee
