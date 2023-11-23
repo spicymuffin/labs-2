@@ -36,11 +36,33 @@ string Pokemon::getName() const
 {
     return name;
 }
+
+int Pokemon::getSkillCnt() const
+{
+    return skills.size();
+}
+
+string Pokemon::getSpecieName() const
+{
+    return specieName;
+}
+
 int Pokemon::getPokemonElement() const
 {
     return pokemonElement;
 }
 int Pokemon::getCurrentHP() const
 {
+    return currentHP;
+}
+
+Skill *Pokemon::getSkill(int skillIndex)
+{
+    return &skills[skillIndex];
+}
+
+int Pokemon::takeDamage(int damage)
+{
+    currentHP -= damage;
     return currentHP;
 }

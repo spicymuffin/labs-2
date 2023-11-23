@@ -9,7 +9,14 @@
 class Skill
 {
 public:
-    Skill(string _name, int _skillElement, int _baseDamage, int _maxTries, int _triesLeft = -1);
+    Skill(string _name, int _skillElement, int _baseDamage, int _maxTries);
+    int useSkill(int defenderElement);
+    string getName() const;
+    int getSkillElement() const;
+    int getBaseDamage() const;
+    int getMaxTries() const;
+    int getTriesLeft() const;
+    string getEffectivenessTypeName(int defenderElement) const;
 
 private:
     string name;

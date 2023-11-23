@@ -16,9 +16,12 @@ public:
     Pokemon(string _name, string _specieName, int _pokemonElement, int _currentHP, int _maxHP);
     Pokemon(string _name, string _specieName, int _pokemonElement, int _currentHP, int _maxHP, vector<Skill> &_skills);
     string getName() const;
+    string getSpecieName() const;
     int getPokemonElement() const;
     int getCurrentHP() const;
-    Skill *getSkill() const;
+    Skill *getSkill(int skillIndex);
+    int takeDamage(int damage);
+    int getSkillCnt() const;
 
 protected:
     string name;

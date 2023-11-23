@@ -9,7 +9,7 @@ using namespace std;
 
 Charmander::Charmander(string _name) : Pokemon(_name)
 {
-    specieName = "Charmander"
+    specieName = "Charmander";
     pokemonElement = Element::FIRE;
     maxHP = 39;
     currentHP = maxHP;
