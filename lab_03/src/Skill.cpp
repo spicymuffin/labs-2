@@ -24,17 +24,19 @@ string Skill::getEffectivenessTypeName(int defenderElement) const
     int effectivenessModifier = Element::getAtkEffectiveness(skillElement, defenderElement);
     if (effectivenessModifier == Element::EFFECTIVE_ATK)
     {
+        return "effective";
     }
     else if (effectivenessModifier == Element::SUPER_EFFECTIVE_ATK)
     {
+        return "super effective";
     }
     else if (effectivenessModifier == Element::NOT_VERY_EFFECTIVE_ATK)
     {
-        return ""
+        return "not very effective";
     }
     else
     {
-        __throw_runtime_error("effectivenessModifier unrecognized");
+        __throw_runtime_error("effectiveness modifier unrecognized");
         exit(-1);
     }
 }
@@ -43,18 +45,22 @@ string Skill::getName() const
 {
     return name;
 }
+
 int Skill::getSkillElement() const
 {
     return skillElement;
 }
+
 int Skill::getBaseDamage() const
 {
     return baseDamage;
 }
+
 int Skill::getMaxTries() const
 {
     return maxTries;
 }
+
 int Skill::getTriesLeft() const
 {
     return triesLeft;

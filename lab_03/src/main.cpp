@@ -28,7 +28,7 @@ public:
 
     string stringifyPokemonBaseData(Pokemon *pokemon, bool turn)
     {
-        return pokemon->getSpecieName() +
+        return pokemon->getSpecieName() + (turn ? " (*)" : "") +
                "\nType: " + Element::getElementName(pokemon->getPokemonElement()) +
                "\nHP: " + to_string(pokemon->getCurrentHP());
     }
@@ -115,21 +115,6 @@ public:
         }
     }
 
-    vector<string> generateCanvas(int width, int height)
-    {
-        vector<string> canvas;
-        for (int i = 0; i < height; ++i)
-        {
-            string line = "";
-            for (int j = 0; j < width; ++j)
-            {
-                line += " ";
-            }
-            canvas.push_back(line);
-        }
-        return canvas;
-    }
-
     void concatCells(const vector<string> &cell, vector<string> &canvas, int x, int y)
     {
         for (int i = static_cast<int>(canvas.size()) - 1; i < y + static_cast<int>(cell.size()) - 1; ++i) // we need to populate
@@ -162,6 +147,11 @@ private:
 class Player
 {
 public:
+    Player()
+    {
+        selectedPokemon = NULL;
+    }
+
     Player(Pokemon *_selectedPokemon)
     {
         selectedPokemon = _selectedPokemon;
@@ -172,13 +162,25 @@ public:
         return selectedPokemon;
     }
 
+    bool getTurn() const
+    {
+        return turn;
+    }
+
+    void setTurn(bool _turn)
+    {
+        turn = _turn;
+    }
+
 private:
     Pokemon *selectedPokemon;
+    bool turn = false;
 };
 
 int main(int argc, char *argv[])
 {
-    // create pokemons
+    // create pokemons (names in case we need a battle between two pokemons of the same type)
+    // i know we dont need it but still....
     Pikachu pikachu("pikachu1");
     Dratini dratini("dratini1");
     Eevee eevee("eevee1");
@@ -187,13 +189,14 @@ int main(int argc, char *argv[])
 
     Pokemon pokemon_arr[5] = {pikachu, dratini, eevee, charmander, palkia};
 
+    // players' selctions (defauts to pikachu and dratini for debugging purposes)
     int selection0 = 0;
     int selection1 = 1;
 
     cout << "Choose a Pokemon(0~4): ";
-    // cin >> selection0;
+    cin >> selection0;
     cout << "Choose another Pokemon(0~4): ";
-    // cin >> selection1;
+    cin >> selection1;
 
     if (selection0 == selection1)
     {
@@ -201,8 +204,10 @@ int main(int argc, char *argv[])
         return -1; // exit
     }
 
+    // declare players
     Player player0(&pokemon_arr[selection0]), player1(&pokemon_arr[selection1]);
 
+    // players array
     Player players[2] = {player0,
                          player1};
 
@@ -212,44 +217,64 @@ int main(int argc, char *argv[])
     int turn = 0;
     while (player0.getPokemon()->getCurrentHP() > 0 && player1.getPokemon()->getCurrentHP() > 0)
     {
-        // render table
-        // cout << mr.stringifyPokemonBaseData(defender->getPokemon(), false);
-        // cout << mr.stringifyPokemonSkillData(attacker->getPokemon());
+        // set attacker and defender player
+        Player *attacker = &players[(turn % 2)];
+        Player *defender = &players[(turn + 1) % 2];
 
+        // set turns
+        attacker->setTurn(true);
+        defender->setTurn(false);
+
+        // render table
         vector<string> headerCell = mr.generateCell(mr.generateHeader(), 63, 1);
-        vector<string> cell0 = mr.generateCell(mr.stringifyPokemonBaseData(player0.getPokemon(), false), 32, 1);
-        vector<string> cell1 = mr.generateCell(mr.stringifyPokemonBaseData(player1.getPokemon(), false), 32, 1);
+        vector<string> cell0 = mr.generateCell(mr.stringifyPokemonBaseData(player0.getPokemon(), player0.getTurn()), 32, 1);
+        vector<string> cell1 = mr.generateCell(mr.stringifyPokemonBaseData(player1.getPokemon(), player1.getTurn()), 32, 1);
         vector<string> cell2 = mr.generateCell(mr.stringifyPokemonSkillData(player0.getPokemon()), 32, 1);
         vector<string> cell3 = mr.generateCell(mr.stringifyPokemonSkillData(player1.getPokemon()), 32, 1);
+
+        // concatinated cells
         mr.concatCells(cell0, headerCell, 0, 2);
         mr.concatCells(cell1, headerCell, 31, 2);
         mr.concatCells(cell2, headerCell, 0, 6);
         mr.concatCells(cell3, headerCell, 31, 6);
 
+        // render all concatinated cells
         mr.renderCell(headerCell);
 
+        // get input
         int atkSelction = -1;
         cout << "Choose a skill(0~3): " << endl;
         cin >> atkSelction;
-
-        Player *attacker = &players[(turn % 2)];
-        Player *defender = &players[(turn + 1) % 2];
 
         // attack process, update
         int dmg = attacker->getPokemon()->getSkill(atkSelction)->useSkill(defender->getPokemon()->getPokemonElement());
         defender->getPokemon()->takeDamage(dmg);
 
+        // display attack effectiveness
         cout << attacker->getPokemon()->getSpecieName() << " used " << attacker->getPokemon()->getSkill(atkSelction)->getName() << "." << endl;
         cout << "The attack was " << attacker->getPokemon()->getSkill(atkSelction)->getEffectivenessTypeName(defender->getPokemon()->getPokemonElement()) << "." << endl;
         cout << endl;
 
+        // next turn
         turn++;
     }
 
+    // pointers to players
     Player *winner, *loser;
 
     // determine winner and loser
+    if (player0.getPokemon()->getCurrentHP() <= 0)
+    {
+        winner = &player1;
+        loser = &player0;
+    }
+    else
+    {
+        winner = &player0;
+        loser = &player1;
+    }
 
+    // display match results
     cout << "===============================================================" << endl;
     cout << "Match Result: " << winner->getPokemon()->getSpecieName() << " defeats " << loser->getPokemon()->getSpecieName();
 }
