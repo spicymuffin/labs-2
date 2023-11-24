@@ -1,0 +1,189 @@
+Choose a Pokemon(0~4): Choose another Pokemon(0~4): +-------------------------------------------------------------+
+| 2023148006 OOP Computer Science                             |
++------------------------------+------------------------------+
+| Charmander (*)               | Eevee                        |
+| Type: Fire                   | Type: Normal                 |
+| HP: 39                       | HP: 55                       |
++------------------------------+------------------------------+
+| (0) Tackle                   | (0) Tackle                   |
+|     - Type: Normal           |     - Type: Normal           |
+|     - Damage: 4              |     - Damage: 4              |
+|     - Count: 5(5)            |     - Count: 5(5)            |
+| (1) Flamethrower             | (1) Sand Attack              |
+|     - Type: Fire             |     - Type: Ground           |
+|     - Damage: 11             |     - Damage: 8              |
+|     - Count: 5(5)            |     - Count: 3(3)            |
+| (2) Dig                      | (2) Bite                     |
+|     - Type: Ground           |     - Type: Normal           |
+|     - Damage: 7              |     - Damage: 12             |
+|     - Count: 5(5)            |     - Count: 3(3)            |
+| (3) Heat Wave                | (3) Rain Dance               |
+|     - Type: Fire             |     - Type: Water            |
+|     - Damage: 14             |     - Damage: 15             |
+|     - Count: 5(5)            |     - Count: 1(1)            |
++------------------------------+------------------------------+
+Choose a skill(0~3): Charmander used Heat Wave.
+The attack was effective.
+
++-------------------------------------------------------------+
+| 2023148006 OOP Computer Science                             |
++------------------------------+------------------------------+
+| Charmander                   | Eevee (*)                    |
+| Type: Fire                   | Type: Normal                 |
+| HP: 39                       | HP: 41                       |
++------------------------------+------------------------------+
+| (0) Tackle                   | (0) Tackle                   |
+|     - Type: Normal           |     - Type: Normal           |
+|     - Damage: 4              |     - Damage: 4              |
+|     - Count: 5(5)            |     - Count: 5(5)            |
+| (1) Flamethrower             | (1) Sand Attack              |
+|     - Type: Fire             |     - Type: Ground           |
+|     - Damage: 11             |     - Damage: 8              |
+|     - Count: 5(5)            |     - Count: 3(3)            |
+| (2) Dig                      | (2) Bite                     |
+|     - Type: Ground           |     - Type: Normal           |
+|     - Damage: 7              |     - Damage: 12             |
+|     - Count: 5(5)            |     - Count: 3(3)            |
+| (3) Heat Wave                | (3) Rain Dance               |
+|     - Type: Fire             |     - Type: Water            |
+|     - Damage: 14             |     - Damage: 15             |
+|     - Count: 4(5)            |     - Count: 1(1)            |
++------------------------------+------------------------------+
+Choose a skill(0~3): Eevee used Rain Dance.
+The attack was super effective.
+
++-------------------------------------------------------------+
+| 2023148006 OOP Computer Science                             |
++------------------------------+------------------------------+
+| Charmander (*)               | Eevee                        |
+| Type: Fire                   | Type: Normal                 |
+| HP: 19                       | HP: 41                       |
++------------------------------+------------------------------+
+| (0) Tackle                   | (0) Tackle                   |
+|     - Type: Normal           |     - Type: Normal           |
+|     - Damage: 4              |     - Damage: 4              |
+|     - Count: 5(5)            |     - Count: 5(5)            |
+| (1) Flamethrower             | (1) Sand Attack              |
+|     - Type: Fire             |     - Type: Ground           |
+|     - Damage: 11             |     - Damage: 8              |
+|     - Count: 5(5)            |     - Count: 3(3)            |
+| (2) Dig                      | (2) Bite                     |
+|     - Type: Ground           |     - Type: Normal           |
+|     - Damage: 7              |     - Damage: 12             |
+|     - Count: 5(5)            |     - Count: 3(3)            |
+| (3) Heat Wave                | (3) Rain Dance               |
+|     - Type: Fire             |     - Type: Water            |
+|     - Damage: 14             |     - Damage: 15             |
+|     - Count: 4(5)            |     - Count: 0(1)            |
++------------------------------+------------------------------+
+Choose a skill(0~3): Charmander used Heat Wave.
+The attack was effective.
+
++-------------------------------------------------------------+
+| 2023148006 OOP Computer Science                             |
++------------------------------+------------------------------+
+| Charmander                   | Eevee (*)                    |
+| Type: Fire                   | Type: Normal                 |
+| HP: 19                       | HP: 27                       |
++------------------------------+------------------------------+
+| (0) Tackle                   | (0) Tackle                   |
+|     - Type: Normal           |     - Type: Normal           |
+|     - Damage: 4              |     - Damage: 4              |
+|     - Count: 5(5)            |     - Count: 5(5)            |
+| (1) Flamethrower             | (1) Sand Attack              |
+|     - Type: Fire             |     - Type: Ground           |
+|     - Damage: 11             |     - Damage: 8              |
+|     - Count: 5(5)            |     - Count: 3(3)            |
+| (2) Dig                      | (2) Bite                     |
+|     - Type: Ground           |     - Type: Normal           |
+|     - Damage: 7              |     - Damage: 12             |
+|     - Count: 5(5)            |     - Count: 3(3)            |
+| (3) Heat Wave                | (3) Rain Dance               |
+|     - Type: Fire             |     - Type: Water            |
+|     - Damage: 14             |     - Damage: 15             |
+|     - Count: 3(5)            |     - Count: 0(1)            |
++------------------------------+------------------------------+
+Choose a skill(0~3): Eevee failed to perform Rain Dance
+
++-------------------------------------------------------------+
+| 2023148006 OOP Computer Science                             |
++------------------------------+------------------------------+
+| Charmander (*)               | Eevee                        |
+| Type: Fire                   | Type: Normal                 |
+| HP: 19                       | HP: 27                       |
++------------------------------+------------------------------+
+| (0) Tackle                   | (0) Tackle                   |
+|     - Type: Normal           |     - Type: Normal           |
+|     - Damage: 4              |     - Damage: 4              |
+|     - Count: 5(5)            |     - Count: 5(5)            |
+| (1) Flamethrower             | (1) Sand Attack              |
+|     - Type: Fire             |     - Type: Ground           |
+|     - Damage: 11             |     - Damage: 8              |
+|     - Count: 5(5)            |     - Count: 3(3)            |
+| (2) Dig                      | (2) Bite                     |
+|     - Type: Ground           |     - Type: Normal           |
+|     - Damage: 7              |     - Damage: 12             |
+|     - Count: 5(5)            |     - Count: 3(3)            |
+| (3) Heat Wave                | (3) Rain Dance               |
+|     - Type: Fire             |     - Type: Water            |
+|     - Damage: 14             |     - Damage: 15             |
+|     - Count: 3(5)            |     - Count: 0(1)            |
++------------------------------+------------------------------+
+Choose a skill(0~3): Charmander used Heat Wave.
+The attack was effective.
+
++-------------------------------------------------------------+
+| 2023148006 OOP Computer Science                             |
++------------------------------+------------------------------+
+| Charmander                   | Eevee (*)                    |
+| Type: Fire                   | Type: Normal                 |
+| HP: 19                       | HP: 13                       |
++------------------------------+------------------------------+
+| (0) Tackle                   | (0) Tackle                   |
+|     - Type: Normal           |     - Type: Normal           |
+|     - Damage: 4              |     - Damage: 4              |
+|     - Count: 5(5)            |     - Count: 5(5)            |
+| (1) Flamethrower             | (1) Sand Attack              |
+|     - Type: Fire             |     - Type: Ground           |
+|     - Damage: 11             |     - Damage: 8              |
+|     - Count: 5(5)            |     - Count: 3(3)            |
+| (2) Dig                      | (2) Bite                     |
+|     - Type: Ground           |     - Type: Normal           |
+|     - Damage: 7              |     - Damage: 12             |
+|     - Count: 5(5)            |     - Count: 3(3)            |
+| (3) Heat Wave                | (3) Rain Dance               |
+|     - Type: Fire             |     - Type: Water            |
+|     - Damage: 14             |     - Damage: 15             |
+|     - Count: 2(5)            |     - Count: 0(1)            |
++------------------------------+------------------------------+
+Choose a skill(0~3): Eevee failed to perform Rain Dance
+
++-------------------------------------------------------------+
+| 2023148006 OOP Computer Science                             |
++------------------------------+------------------------------+
+| Charmander (*)               | Eevee                        |
+| Type: Fire                   | Type: Normal                 |
+| HP: 19                       | HP: 13                       |
++------------------------------+------------------------------+
+| (0) Tackle                   | (0) Tackle                   |
+|     - Type: Normal           |     - Type: Normal           |
+|     - Damage: 4              |     - Damage: 4              |
+|     - Count: 5(5)            |     - Count: 5(5)            |
+| (1) Flamethrower             | (1) Sand Attack              |
+|     - Type: Fire             |     - Type: Ground           |
+|     - Damage: 11             |     - Damage: 8              |
+|     - Count: 5(5)            |     - Count: 3(3)            |
+| (2) Dig                      | (2) Bite                     |
+|     - Type: Ground           |     - Type: Normal           |
+|     - Damage: 7              |     - Damage: 12             |
+|     - Count: 5(5)            |     - Count: 3(3)            |
+| (3) Heat Wave                | (3) Rain Dance               |
+|     - Type: Fire             |     - Type: Water            |
+|     - Damage: 14             |     - Damage: 15             |
+|     - Count: 2(5)            |     - Count: 0(1)            |
++------------------------------+------------------------------+
+Choose a skill(0~3): Charmander used Heat Wave.
+The attack was effective.
+
+===============================================================
+Match Result: Charmander defeats Eevee

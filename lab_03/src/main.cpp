@@ -16,14 +16,21 @@ using namespace std;
 #include "pokemon/Palkia.h"
 #include "pokemon/Pikachu.h"
 
+// student ID
 const string ID = "2023148006";
 
+// class for renderer. renderer handles stuff related to output
 class Renderer
 {
 public:
     Renderer(int _width)
     {
         width = _width;
+    }
+
+    int getWidth() const
+    {
+        return width;
     }
 
     string stringifyPokemonBaseData(Pokemon *pokemon, bool turn)
@@ -187,7 +194,7 @@ int main(int argc, char *argv[])
     Charmander charmander("charmander1");
     Palkia palkia("palkia1");
 
-    Pokemon pokemon_arr[5] = {pikachu, dratini, eevee, charmander, palkia};
+    Pokemon *pokemon_arr[5] = {&pikachu, &dratini, &eevee, &charmander, &palkia};
 
     // players' selctions (defauts to pikachu and dratini for debugging purposes)
     int selection0 = 0;
@@ -205,11 +212,11 @@ int main(int argc, char *argv[])
     }
 
     // declare players
-    Player player0(&pokemon_arr[selection0]), player1(&pokemon_arr[selection1]);
+    Player player0(pokemon_arr[selection0]), player1(pokemon_arr[selection1]);
 
     // players array
-    Player players[2] = {player0,
-                         player1};
+    Player *players[2] = {&player0,
+                          &player1};
 
     // initialize renderer
     Renderer mr(63);
@@ -218,48 +225,60 @@ int main(int argc, char *argv[])
     while (player0.getPokemon()->getCurrentHP() > 0 && player1.getPokemon()->getCurrentHP() > 0)
     {
         // set attacker and defender player
-        Player *attacker = &players[(turn % 2)];
-        Player *defender = &players[(turn + 1) % 2];
+        Player *attacker = players[(turn % 2)];
+        Player *defender = players[(turn + 1) % 2];
 
         // set turns
         attacker->setTurn(true);
         defender->setTurn(false);
 
-        // render table
-        vector<string> headerCell = mr.generateCell(mr.generateHeader(), 63, 1);
-        vector<string> cell0 = mr.generateCell(mr.stringifyPokemonBaseData(player0.getPokemon(), player0.getTurn()), 32, 1);
-        vector<string> cell1 = mr.generateCell(mr.stringifyPokemonBaseData(player1.getPokemon(), player1.getTurn()), 32, 1);
-        vector<string> cell2 = mr.generateCell(mr.stringifyPokemonSkillData(player0.getPokemon()), 32, 1);
-        vector<string> cell3 = mr.generateCell(mr.stringifyPokemonSkillData(player1.getPokemon()), 32, 1);
+        // generate cells
+        vector<string> headerCell = mr.generateCell(mr.generateHeader(), mr.getWidth(), 1);
+        vector<string> cell0 = mr.generateCell(mr.stringifyPokemonBaseData(player0.getPokemon(), player0.getTurn()), (mr.getWidth() / 2) + 1, 1);
+        vector<string> cell1 = mr.generateCell(mr.stringifyPokemonBaseData(player1.getPokemon(), player1.getTurn()), (mr.getWidth() / 2) + 1, 1);
+        vector<string> cell2 = mr.generateCell(mr.stringifyPokemonSkillData(player0.getPokemon()), (mr.getWidth() / 2) + 1, 1);
+        vector<string> cell3 = mr.generateCell(mr.stringifyPokemonSkillData(player1.getPokemon()), (mr.getWidth() / 2) + 1, 1);
 
-        // concatinated cells
-        mr.concatCells(cell0, headerCell, 0, 2);
-        mr.concatCells(cell1, headerCell, 31, 2);
-        mr.concatCells(cell2, headerCell, 0, 6);
-        mr.concatCells(cell3, headerCell, 31, 6);
+        // concatinate cells
+        int headerCellHeight = static_cast<int>(headerCell.size());
+        mr.concatCells(cell0, headerCell, 0, headerCellHeight - 1);
+        mr.concatCells(cell1, headerCell, mr.getWidth() / 2, headerCellHeight - 1);
 
-        // render all concatinated cells
+        int baseDataCellHeight = static_cast<int>(headerCell.size());
+        mr.concatCells(cell2, headerCell, 0, baseDataCellHeight - 1);
+        mr.concatCells(cell3, headerCell, mr.getWidth() / 2, baseDataCellHeight - 1);
+
+        // render concatinated cells (table)
         mr.renderCell(headerCell);
 
         // get input
         int atkSelction = -1;
-        cout << "Choose a skill(0~3): " << endl;
+        cout << "Choose a skill(0~3): ";
         cin >> atkSelction;
 
-        // attack process, update
-        int dmg = attacker->getPokemon()->getSkill(atkSelction)->useSkill(defender->getPokemon()->getPokemonElement());
-        defender->getPokemon()->takeDamage(dmg);
+        // check if can use attack
+        if (attacker->getPokemon()->getSkill(atkSelction)->getTriesLeft() > 0)
+        {
+            // attack process, update
+            int dmg = attacker->getPokemon()->getSkill(atkSelction)->useSkill(defender->getPokemon()->getPokemonElement());
+            defender->getPokemon()->takeDamage(dmg);
 
-        // display attack effectiveness
-        cout << attacker->getPokemon()->getSpecieName() << " used " << attacker->getPokemon()->getSkill(atkSelction)->getName() << "." << endl;
-        cout << "The attack was " << attacker->getPokemon()->getSkill(atkSelction)->getEffectivenessTypeName(defender->getPokemon()->getPokemonElement()) << "." << endl;
-        cout << endl;
+            // display attack effectiveness
+            cout << attacker->getPokemon()->getSpecieName() << " used " << attacker->getPokemon()->getSkill(atkSelction)->getName() << "." << endl;
+            cout << "The attack was " << attacker->getPokemon()->getSkill(atkSelction)->getEffectivenessTypeName(defender->getPokemon()->getPokemonElement()) << "." << endl;
+            cout << endl;
+        }
+        else
+        {
+            cout << attacker->getPokemon()->getSpecieName() << " failed to perform " << attacker->getPokemon()->getSkill(atkSelction)->getName() << endl;
+            cout << endl;
+        }
 
         // next turn
         turn++;
     }
 
-    // pointers to players
+    // pointers to winner and loser
     Player *winner, *loser;
 
     // determine winner and loser
@@ -276,5 +295,5 @@ int main(int argc, char *argv[])
 
     // display match results
     cout << "===============================================================" << endl;
-    cout << "Match Result: " << winner->getPokemon()->getSpecieName() << " defeats " << loser->getPokemon()->getSpecieName();
+    cout << "Match Result: " << winner->getPokemon()->getSpecieName() << " defeats " << loser->getPokemon()->getSpecieName() << endl;
 }

@@ -37,17 +37,17 @@ string Element::getElementName(int element)
         return "undefined";
         break;
     case NORMAL:
-        return "normal";
+        return "Normal";
     case GROUND:
-        return "ground";
+        return "Ground";
     case ELECTRIC:
-        return "electric";
+        return "Electric";
     case WATER:
-        return "water";
+        return "Water";
     case GLASS:
-        return "glass";
+        return "Glass";
     case FIRE:
-        return "fire";
+        return "Fire";
     default:
         return "undefined";
         break;
