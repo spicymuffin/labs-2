@@ -1,4 +1,6 @@
-Choose a Pokemon(0~4): Choose another Pokemon(0~4): +-------------------------------------------------------------+
+Choose a Pokemon(0~4): 2
+Choose another Pokemon(0~4): 4
++-------------------------------------------------------------+
 | 2023148006 OOP Computer Science                             |
 +------------------------------+------------------------------+
 | Eevee (*)                    | Palkia                       |
@@ -22,7 +24,8 @@ Choose a Pokemon(0~4): Choose another Pokemon(0~4): +---------------------------
 |     - Damage: 15             |     - Damage: 30             |
 |     - Count: 1(1)            |     - Count: 10(10)          |
 +------------------------------+------------------------------+
-Choose a skill(0~3): Eevee used Bite.
+Choose a skill (0~3): 2
+Eevee used Bite.
 The attack was effective.
 
 +-------------------------------------------------------------+
@@ -49,7 +52,8 @@ The attack was effective.
 |     - Damage: 15             |     - Damage: 30             |
 |     - Count: 1(1)            |     - Count: 10(10)          |
 +------------------------------+------------------------------+
-Choose a skill(0~3): Palkia used Earth Power.
+Choose a skill (0~3): 1
+Palkia used Earth Power.
 The attack was effective.
 
 +-------------------------------------------------------------+
@@ -76,7 +80,8 @@ The attack was effective.
 |     - Damage: 15             |     - Damage: 30             |
 |     - Count: 1(1)            |     - Count: 10(10)          |
 +------------------------------+------------------------------+
-Choose a skill(0~3): Eevee used Tackle.
+Choose a skill (0~3): 0
+Eevee used Tackle.
 The attack was effective.
 
 +-------------------------------------------------------------+
@@ -103,7 +108,8 @@ The attack was effective.
 |     - Damage: 15             |     - Damage: 30             |
 |     - Count: 1(1)            |     - Count: 10(10)          |
 +------------------------------+------------------------------+
-Choose a skill(0~3): Palkia used Spatial Rend.
+Choose a skill (0~3): 3
+Palkia used Spatial Rend.
 The attack was effective.
 
 +-------------------------------------------------------------+
@@ -130,7 +136,8 @@ The attack was effective.
 |     - Damage: 15             |     - Damage: 30             |
 |     - Count: 1(1)            |     - Count: 9(10)           |
 +------------------------------+------------------------------+
-Choose a skill(0~3): Eevee used Bite.
+Choose a skill (0~3): 2
+Eevee used Bite.
 The attack was effective.
 
 +-------------------------------------------------------------+
@@ -157,7 +164,8 @@ The attack was effective.
 |     - Damage: 15             |     - Damage: 30             |
 |     - Count: 1(1)            |     - Count: 9(10)           |
 +------------------------------+------------------------------+
-Choose a skill(0~3): Palkia used Earth Power.
+Choose a skill (0~3): 1
+Palkia used Earth Power.
 The attack was effective.
 
 ===============================================================

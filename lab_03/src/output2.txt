@@ -1,4 +1,6 @@
-Choose a Pokemon(0~4): Choose another Pokemon(0~4): +-------------------------------------------------------------+
+Choose a Pokemon(0~4): 3
+Choose another Pokemon(0~4): 2
++-------------------------------------------------------------+
 | 2023148006 OOP Computer Science                             |
 +------------------------------+------------------------------+
 | Charmander (*)               | Eevee                        |
@@ -22,7 +24,8 @@ Choose a Pokemon(0~4): Choose another Pokemon(0~4): +---------------------------
 |     - Damage: 14             |     - Damage: 15             |
 |     - Count: 5(5)            |     - Count: 1(1)            |
 +------------------------------+------------------------------+
-Choose a skill(0~3): Charmander used Heat Wave.
+Choose a skill (0~3): 3
+Charmander used Heat Wave.
 The attack was effective.
 
 +-------------------------------------------------------------+
@@ -49,7 +52,8 @@ The attack was effective.
 |     - Damage: 14             |     - Damage: 15             |
 |     - Count: 4(5)            |     - Count: 1(1)            |
 +------------------------------+------------------------------+
-Choose a skill(0~3): Eevee used Rain Dance.
+Choose a skill (0~3): 3
+Eevee used Rain Dance.
 The attack was super effective.
 
 +-------------------------------------------------------------+
@@ -76,7 +80,8 @@ The attack was super effective.
 |     - Damage: 14             |     - Damage: 15             |
 |     - Count: 4(5)            |     - Count: 0(1)            |
 +------------------------------+------------------------------+
-Choose a skill(0~3): Charmander used Heat Wave.
+Choose a skill (0~3): 3
+Charmander used Heat Wave.
 The attack was effective.
 
 +-------------------------------------------------------------+
@@ -103,7 +108,8 @@ The attack was effective.
 |     - Damage: 14             |     - Damage: 15             |
 |     - Count: 3(5)            |     - Count: 0(1)            |
 +------------------------------+------------------------------+
-Choose a skill(0~3): Eevee failed to perform Rain Dance
+Choose a skill (0~3): 3
+Eevee failed to perform Rain Dance.
 
 +-------------------------------------------------------------+
 | 2023148006 OOP Computer Science                             |
@@ -129,7 +135,8 @@ Choose a skill(0~3): Eevee failed to perform Rain Dance
 |     - Damage: 14             |     - Damage: 15             |
 |     - Count: 3(5)            |     - Count: 0(1)            |
 +------------------------------+------------------------------+
-Choose a skill(0~3): Charmander used Heat Wave.
+Choose a skill (0~3): 3
+Charmander used Heat Wave.
 The attack was effective.
 
 +-------------------------------------------------------------+
@@ -156,7 +163,8 @@ The attack was effective.
 |     - Damage: 14             |     - Damage: 15             |
 |     - Count: 2(5)            |     - Count: 0(1)            |
 +------------------------------+------------------------------+
-Choose a skill(0~3): Eevee failed to perform Rain Dance
+Choose a skill (0~3): 3
+Eevee failed to perform Rain Dance.
 
 +-------------------------------------------------------------+
 | 2023148006 OOP Computer Science                             |
@@ -182,7 +190,8 @@ Choose a skill(0~3): Eevee failed to perform Rain Dance
 |     - Damage: 14             |     - Damage: 15             |
 |     - Count: 2(5)            |     - Count: 0(1)            |
 +------------------------------+------------------------------+
-Choose a skill(0~3): Charmander used Heat Wave.
+Choose a skill (0~3): 3
+Charmander used Heat Wave.
 The attack was effective.
 
 ===============================================================

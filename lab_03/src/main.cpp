@@ -253,7 +253,7 @@ int main(int argc, char *argv[])
 
         // get input
         int atkSelction = -1;
-        cout << "Choose a skill(0~3): ";
+        cout << "Choose a skill (0~3): ";
         cin >> atkSelction;
 
         // check if can use attack
@@ -270,7 +270,7 @@ int main(int argc, char *argv[])
         }
         else
         {
-            cout << attacker->getPokemon()->getSpecieName() << " failed to perform " << attacker->getPokemon()->getSkill(atkSelction)->getName() << endl;
+            cout << attacker->getPokemon()->getSpecieName() << " failed to perform " << attacker->getPokemon()->getSkill(atkSelction)->getName() << "." << endl;
             cout << endl;
         }
 
