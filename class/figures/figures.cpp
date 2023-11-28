@@ -4,11 +4,10 @@
 
 using namespace std;
 
-void Figure::draw()
+void Rectangle::draw()
 {
 }
-
-void Rectangle::draw()
+void Rectangle::center()
 {
 }
 
@@ -16,6 +15,14 @@ void Circle::draw()
 {
 }
 
+void Circle::center()
+{
+}
+
 void Triangle::draw()
+{
+}
+
+void Triangle::center()
 {
 }

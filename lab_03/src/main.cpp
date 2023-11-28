@@ -1,3 +1,11 @@
+/**
+ * @file main.cpp
+ * @author Luigi Cussigh (luigicussigh59@gmail.com)
+ * @brief a VERY overkill assignment 3 submission
+ * @version 0.1
+ * @date 2023-11-23
+ */
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -18,31 +26,63 @@ using namespace std;
 
 // student ID
 const string ID = "2023148006";
+const string NAME = "Luigi Cussigh";
+const string DEPARTMENT = "Computer Science";
 
-// class for renderer. renderer handles stuff related to output
-class Renderer
+    /**
+     * @brief
+     * represents renderers. renderers handle stuff related to output
+     */
+    class Renderer
 {
 public:
+    /**
+     * @brief
+     * construct a new Renderer object
+     * @param _width
+     * table's width
+     */
     Renderer(int _width)
     {
         width = _width;
     }
 
+    /**
+     * @brief
+     * get the table's width
+     * @return int
+     * table's width
+     */
     int getWidth() const
     {
         return width;
     }
 
+    /**
+     * @brief
+     * get pokemon's basic data as a string (doesnt end with a newline)
+     * @param pokemon pointer to the pokemon, the data of which is required
+     * @param turn places "(*)" if set to true
+     * @return string pokemon's stringified basic data
+     */
     string stringifyPokemonBaseData(Pokemon *pokemon, bool turn)
     {
+        // self-explanatory
         return pokemon->getSpecieName() + (turn ? " (*)" : "") +
                "\nType: " + Element::getElementName(pokemon->getPokemonElement()) +
                "\nHP: " + to_string(pokemon->getCurrentHP());
     }
 
+    /**
+     * @brief
+     * get pokemon's skill data as a string (doesnt end with a newline)
+     * @param pokemon pointer to the pokemon, the data of which is required
+     * @return string pokemon's stringified skill data
+     */
     string stringifyPokemonSkillData(Pokemon *pokemon)
     {
         string result = "";
+        // repeat for no. of skills
         for (int i = 0; i < pokemon->getSkillCnt(); ++i)
         {
             Skill *skillptr = pokemon->getSkill(i);
@@ -51,57 +91,97 @@ public:
             result += "    - Damage: " + to_string(skillptr->getBaseDamage()) + "\n";
             result += "    - Count: " + to_string(skillptr->getTriesLeft()) + "(" + to_string(skillptr->getMaxTries()) + ")" + "\n";
         }
+        // remove last \n
         result.pop_back();
         return result;
     }
 
+    /**
+     * @brief
+     * splits a string into a vector of strings by newlines
+     * @param content the string, which requires splitting
+     * @return vector<string> the resulting vector of strings
+     */
     vector<string> splitByNewlines(string content)
     {
         vector<string> result;
 
         string tmp;
+        // cycle through string
         for (int i = 0; i < static_cast<int>(content.size()); ++i)
         {
+            // if \n not encountered then add to content
             if (content[i] != '\n')
             {
                 tmp += content[i];
             }
+            // \n encountered, store line, ignoring \n
             else
             {
                 result.push_back(tmp);
                 tmp = "";
             }
         }
+        // add to vector
         result.push_back(tmp);
         return result;
     }
 
+    /**
+     * @brief
+     * generate a cell (vector of strings)
+     * (cell means singular rectangle of a table)
+     * @param content cell's content (determines cell height)
+     * @param cellWidth cell's width
+     * @param contentOffset content's left-side offset
+     * @return vector<string> resulting cell
+     */
     vector<string> generateCell(string content, int cellWidth, int contentOffset)
     {
         vector<string> cell;
 
         vector<string> contentSplit = splitByNewlines(content);
 
+        // place horizontal line first
         cell.push_back(genereateHorLine(cellWidth));
+        // add contetns of the cell to the vector
         for (int i = 0; i < static_cast<int>(contentSplit.size()); ++i)
         {
+            // start with table boundary
             string line = "|";
+
+            // add offset
             for (int j = 0; j < contentOffset; ++j)
             {
                 line += " ";
             }
+
+            // concat content with the line
             line += contentSplit[i];
+
+            // add spaces to match width
             for (int k = line.size(); k < cellWidth - 1; ++k)
             {
                 line += " ";
             }
+
+            // end with table boundary
             line += "|";
+
+            // add to cell
             cell.push_back(line);
         }
+        // finish with a horizontal line as well
         cell.push_back(genereateHorLine(cellWidth));
         return cell;
     }
 
+    /**
+     * @brief
+     * generates a table's horizontal line
+     * @param length length of the line
+     * @return string resulting line
+     */
     string genereateHorLine(int length)
     {
         string result = "";
@@ -114,80 +194,122 @@ public:
         return result;
     }
 
+    /**
+     * @brief
+     * renders cell to terminal
+     * @param cell cell that needs to be rendered
+     */
     void renderCell(const vector<string> &cell)
     {
+        // cycle through vector and cout each line
         for (int i = 0; i < static_cast<int>(cell.size()); ++i)
         {
             cout << cell[i] << endl;
         }
     }
 
-    void concatCells(const vector<string> &cell, vector<string> &canvas, int x, int y)
+    /**
+     * @brief
+     * concatinate cells into one
+     * @param addedCell the cell that is added to targetCell
+     * @param targetCell the cell that receives addedCell
+     * @param x x coordinate of the left top corner of the addedCell's target destination
+     * @param y y coordinate of the left top corner of the addedCell's target destination
+     */
+    void concatCells(const vector<string> &addedCell, vector<string> &targetCell, int x, int y)
     {
-        for (int i = static_cast<int>(canvas.size()) - 1; i < y + static_cast<int>(cell.size()) - 1; ++i) // we need to populate
+        // we need to populate the vector to accomodate the added cell's y coordinates
+        for (int i = static_cast<int>(targetCell.size()) - 1; i < y + static_cast<int>(addedCell.size()) - 1; ++i)
         {
-            canvas.push_back("");
+            targetCell.push_back("");
         }
 
-        for (int i = 0; i < static_cast<int>(cell.size()); ++i)
+        // for each line in added cell
+        for (int i = 0; i < static_cast<int>(addedCell.size()); ++i)
         {
-            for (int j = static_cast<int>(canvas[y + i].size()) - 1; j < x + static_cast<int>(cell[i].size()) - 1; ++j)
+            // poulate line at coordinates from length of line to y + length of target line length to accomodate targetCell's line
+            for (int j = static_cast<int>(targetCell[y + i].size()) - 1; j < x + static_cast<int>(addedCell[i].size()) - 1; ++j)
             {
-                canvas[y + i] += " ";
+                targetCell[y + i] += " ";
             }
-            for (int j = 0; j < static_cast<int>(cell[i].size()); ++j)
+
+            // replace spaces of targetCell with offset (y,x) with the contents of the added cell
+            for (int j = 0; j < static_cast<int>(addedCell[i].size()); ++j)
             {
-                canvas[y + i][j + x] = cell[i][j];
+                targetCell[y + i][j + x] = addedCell[i][j];
             }
         }
     }
 
+    /**
+     * @brief
+     * generate the contents of the table's header
+     * @return string the contents of the header
+     */
     string generateHeader()
     {
-        return ID + " OOP Computer Science";
+        return ID + " " + NAME + " " + DEPARTMENT;
     }
 
 private:
     int width;
 };
 
+/**
+ * @brief
+ * represents a player. holds data that is relevant to the player.
+ */
 class Player
 {
 public:
+    /**
+     * @brief
+     * construct a new Player object
+     */
     Player()
     {
         selectedPokemon = NULL;
     }
-
+    /**
+     * @brief
+     * construct a new Player object
+     * @param _selectedPokemon
+     * pointer to the player's pokemon
+     */
     Player(Pokemon *_selectedPokemon)
     {
         selectedPokemon = _selectedPokemon;
     }
 
+    // get pointer to player's pokemon
     Pokemon *getPokemon()
     {
         return selectedPokemon;
     }
 
+    // get wether wether it's this player's turn
     bool getTurn() const
     {
         return turn;
     }
 
+    // sets player's turn
     void setTurn(bool _turn)
     {
         turn = _turn;
     }
 
 private:
+    // player's pokemon
     Pokemon *selectedPokemon;
+    // player's turn
     bool turn = false;
 };
 
 int main(int argc, char *argv[])
 {
     // create pokemons (names in case we need a battle between two pokemons of the same type)
-    // i know we dont need it but still....
+    // we dont actually need this but eh its fun i guess
     Pikachu pikachu("pikachu1");
     Dratini dratini("dratini1");
     Eevee eevee("eevee1");
@@ -200,11 +322,13 @@ int main(int argc, char *argv[])
     int selection0 = 0;
     int selection1 = 1;
 
+    // get user input
     cout << "Choose a Pokemon(0~4): ";
     cin >> selection0;
     cout << "Choose another Pokemon(0~4): ";
     cin >> selection1;
 
+    // check whether the selection is the same or not
     if (selection0 == selection1)
     {
         cout << "You have to choose Pokemons different from each other." << endl;
@@ -214,17 +338,20 @@ int main(int argc, char *argv[])
     // declare players
     Player player0(pokemon_arr[selection0]), player1(pokemon_arr[selection1]);
 
-    // players array
+    // pointers players array (we need this to access players by index)
     Player *players[2] = {&player0,
                           &player1};
 
     // initialize renderer
-    Renderer mr(63);
+    Renderer rndr(63);
 
+    // keeps track of turn (used to determine which player's turn it is)
     int turn = 0;
+
+    // run until either of the pokemons is defeated
     while (player0.getPokemon()->getCurrentHP() > 0 && player1.getPokemon()->getCurrentHP() > 0)
     {
-        // set attacker and defender player
+        // set pointers to attacker and defender player
         Player *attacker = players[(turn % 2)];
         Player *defender = players[(turn + 1) % 2];
 
@@ -233,25 +360,25 @@ int main(int argc, char *argv[])
         defender->setTurn(false);
 
         // generate cells
-        vector<string> headerCell = mr.generateCell(mr.generateHeader(), mr.getWidth(), 1);
-        vector<string> cell0 = mr.generateCell(mr.stringifyPokemonBaseData(player0.getPokemon(), player0.getTurn()), (mr.getWidth() / 2) + 1, 1);
-        vector<string> cell1 = mr.generateCell(mr.stringifyPokemonBaseData(player1.getPokemon(), player1.getTurn()), (mr.getWidth() / 2) + 1, 1);
-        vector<string> cell2 = mr.generateCell(mr.stringifyPokemonSkillData(player0.getPokemon()), (mr.getWidth() / 2) + 1, 1);
-        vector<string> cell3 = mr.generateCell(mr.stringifyPokemonSkillData(player1.getPokemon()), (mr.getWidth() / 2) + 1, 1);
+        vector<string> headerCell = rndr.generateCell(rndr.generateHeader(), rndr.getWidth(), 1);
+        vector<string> cell0 = rndr.generateCell(rndr.stringifyPokemonBaseData(player0.getPokemon(), player0.getTurn()), (rndr.getWidth() / 2) + 1, 1);
+        vector<string> cell1 = rndr.generateCell(rndr.stringifyPokemonBaseData(player1.getPokemon(), player1.getTurn()), (rndr.getWidth() / 2) + 1, 1);
+        vector<string> cell2 = rndr.generateCell(rndr.stringifyPokemonSkillData(player0.getPokemon()), (rndr.getWidth() / 2) + 1, 1);
+        vector<string> cell3 = rndr.generateCell(rndr.stringifyPokemonSkillData(player1.getPokemon()), (rndr.getWidth() / 2) + 1, 1);
 
         // concatinate cells
         int headerCellHeight = static_cast<int>(headerCell.size());
-        mr.concatCells(cell0, headerCell, 0, headerCellHeight - 1);
-        mr.concatCells(cell1, headerCell, mr.getWidth() / 2, headerCellHeight - 1);
+        rndr.concatCells(cell0, headerCell, 0, headerCellHeight - 1);
+        rndr.concatCells(cell1, headerCell, rndr.getWidth() / 2, headerCellHeight - 1);
 
         int baseDataCellHeight = static_cast<int>(headerCell.size());
-        mr.concatCells(cell2, headerCell, 0, baseDataCellHeight - 1);
-        mr.concatCells(cell3, headerCell, mr.getWidth() / 2, baseDataCellHeight - 1);
+        rndr.concatCells(cell2, headerCell, 0, baseDataCellHeight - 1);
+        rndr.concatCells(cell3, headerCell, rndr.getWidth() / 2, baseDataCellHeight - 1);
 
         // render concatinated cells (table)
-        mr.renderCell(headerCell);
+        rndr.renderCell(headerCell);
 
-        // get input
+        // get skill select input
         int atkSelction = -1;
         cout << "Choose a skill (0~3): ";
         cin >> atkSelction;
@@ -295,5 +422,6 @@ int main(int argc, char *argv[])
 
     // display match results
     cout << "===============================================================" << endl;
-    cout << "Match Result: " << winner->getPokemon()->getSpecieName() << " defeats " << loser->getPokemon()->getSpecieName() << endl;
+    // no endline for some reason...
+    cout << "Match Result: " << winner->getPokemon()->getSpecieName() << " defeats " << loser->getPokemon()->getSpecieName();
 }
