@@ -14,6 +14,11 @@
 
 using namespace std;
 
+// student ID
+const string ID = "2023148006";
+const string NAME = "Luigi Cussigh";
+const string DEPARTMENT = "Computer Science";
+
 #pragma region class declarations
 /**
  * @brief
@@ -872,11 +877,6 @@ Pokemon *Player::getPokemon()
 }
 #pragma endregion
 #pragma endregion
-
-// student ID
-const string ID = "2023148006";
-const string NAME = "Luigi Cussigh";
-const string DEPARTMENT = "Computer Science";
 
 int main(int argc, char *argv[])
 {
