@@ -15,17 +15,65 @@
 using namespace std;
 
 #pragma region class declarations
-
+/**
+ * @brief
+ * represents pokemons' skills
+ */
 class Skill
 {
 public:
+    /**
+     * @brief
+     * construct a new Skill object
+     * @param _name name of the skill
+     * @param _skillElement element of the skill
+     * @param _baseDamage base damage of the skill
+     * @param _maxTries max tries of the skill F
+     */
     Skill(string _name, int _skillElement, int _baseDamage, int _maxTries);
+    /**
+     * @brief
+     * use the skill once
+     * @param defenderElement the defender's element
+     * @return int the damage that will be inflicted (element efficiency modifiers applied)
+     */
     int useSkill(int defenderElement);
+    /**
+     * @brief
+     * get the name of the skill
+     * @return string name of the skill
+     */
     string getName() const;
+    /**
+     * @brief
+     * get the index of the skill's element
+     * @return int the index
+     */
     int getSkillElement() const;
+    /**
+     * @brief
+     * get the skill's base damage
+     * @return int skill's base damage
+     */
     int getBaseDamage() const;
+    /**
+     * @brief
+     * get the skill's max tries
+     * @return int skill's max tries
+     */
     int getMaxTries() const;
+    /**
+     * @brief
+     * get how many times the skill can be performed
+     * @return how many times the skill can be performed
+     */
     int getTriesLeft() const;
+    /**
+     * @brief
+     * get the attack's effectiveness type name
+     * @param defenderElement the defender's element
+     * @return string the effectiveness's type name
+     */
     string getEffectivenessTypeName(int defenderElement) const;
 
 private:
@@ -36,18 +84,83 @@ private:
     int triesLeft;
 };
 
+/**
+ * @brief
+ * pokemon base class
+ */
 class Pokemon
 {
 public:
+    /**
+     * @brief
+     * construct a new Pokemon object
+     * @param _name pokemon's name (not specie)
+     */
     Pokemon(string _name);
+    /**
+     * @brief
+     * construct a new Pokemon object
+     * @param _name pokemon's name
+     * @param _specieName pokemon's specie name
+     * @param _pokemonElement pokemon's element
+     * @param _currentHP pokemon's current HP
+     * @param _maxHP pokemon's max HP
+     */
     Pokemon(string _name, string _specieName, int _pokemonElement, int _currentHP, int _maxHP);
+    /**
+     * @brief
+     * construct a new Pokemon object
+     * @param _name pokemon's name
+     * @param _specieName pokemon's specie name
+     * @param _pokemonElement pokemon's element
+     * @param _currentHP pokemon's current HP
+     * @param _maxHP pokemon's max HP
+     * @param _skills pokemon's skills
+     */
     Pokemon(string _name, string _specieName, int _pokemonElement, int _currentHP, int _maxHP, vector<Skill> &_skills);
+    /**
+     * @brief
+     * get pokemon's name
+     * @return string pokemon's names
+     */
     string getName() const;
+    /**
+     * @brief
+     * get pokemon's specie name
+     * @return string pokemon's specie name
+     */
     string getSpecieName() const;
+    /**
+     * @brief
+     * get the pokemon's element
+     * @return int the pokemon's element
+     */
     int getPokemonElement() const;
+    /**
+     * @brief
+     * get the pokemon's current HP
+     * @return int pokemon's current HP
+     */
     int getCurrentHP() const;
+    /**
+     * @brief
+     * get a pointer to a pokemon's skill at index
+     * @param skillIndex skill's index
+     * @return Skill* pointer to skill
+     */
     Skill *getSkill(int skillIndex);
+    /**
+     * @brief
+     * decrease the HP of the pokemon by specified amount
+     * @param damage the amount of HP to subtract
+     * @return int remaining HP (returns currentHP after subtraction)
+     */
     int takeDamage(int damage);
+    /**
+     * @brief
+     * get the number of skills the pokemon can perform.
+     * @return int the number of skills the pokemon can perform
+     */
     int getSkillCnt() const;
 
 protected:
@@ -59,6 +172,11 @@ protected:
     vector<Skill> skills;
 };
 
+/**
+ * @brief
+ * handles things related to elements
+ * elements are represented as integers
+ */
 class Element
 {
 public:
@@ -74,8 +192,20 @@ public:
     static const int SUPER_EFFECTIVE_ATK;
     static const int NOT_VERY_EFFECTIVE_ATK;
 
+    /**
+     * @brief
+     * get the attack efficieny value between two elements
+     * @param attackElement attacker's skill element
+     * @param defenceElement defender's element
+     * @return int attack efficincy value
+     */
     static int getAtkEffectiveness(int attackElement, int defenceElement);
-
+    /**
+     * @brief
+     * get the capitalized name of an element
+     * @param element the index of the element
+     * @return string the name of the element
+     */
     static string getElementName(int element);
 
 private:
@@ -83,31 +213,193 @@ private:
     static int effectivenessLookupTable[6][6];
 };
 
+/**
+ * @brief
+ * represents renderers. renderers handle stuff related to output
+ */
+class Renderer
+{
+public:
+    /**
+     * @brief
+     * construct a new Renderer object
+     * @param _width
+     * table's width
+     */
+    Renderer(int _width);
+
+    /**
+     * @brief
+     * get the table's width
+     * @return int
+     * table's width
+     */
+    int getWidth() const;
+
+    /**
+     * @brief
+     * get pokemon's basic data as a string (doesnt end with a newline)
+     * @param pokemon pointer to the pokemon, the data of which is required
+     * @param turn places "(*)" if set to true
+     * @return string pokemon's stringified basic data
+     */
+    string stringifyPokemonBaseData(Pokemon *pokemon, bool turn);
+
+    /**
+     * @brief
+     * get pokemon's skill data as a string (doesnt end with a newline)
+     * @param pokemon pointer to the pokemon, the data of which is required
+     * @return string pokemon's stringified skill data
+     */
+    string stringifyPokemonSkillData(Pokemon *pokemon);
+
+    /**
+     * @brief
+     * splits a string into a vector of strings by newlines
+     * @param content the string, which requires splitting
+     * @return vector<string> the resulting vector of strings
+     */
+    vector<string> splitByNewlines(string content);
+
+    /**
+     * @brief
+     * generate a cell (vector of strings)
+     * (cell means singular rectangle of a table)
+     * @param content cell's content (determines cell height)
+     * @param cellWidth cell's width
+     * @param contentOffset content's left-side offset
+     * @return vector<string> resulting cell
+     */
+    vector<string> generateCell(string content, int cellWidth, int contentOffset);
+
+    /**
+     * @brief
+     * generates a table's horizontal line
+     * @param length length of the line
+     * @return string resulting line
+     */
+    string genereateHorLine(int length);
+
+    /**
+     * @brief
+     * renders cell to terminal
+     * @param cell cell that needs to be rendered
+     */
+    void renderCell(const vector<string> &cell);
+
+    /**
+     * @brief
+     * concatinate cells into one
+     * @param addedCell the cell that is added to targetCell
+     * @param targetCell the cell that receives addedCell
+     * @param x x coordinate of the left top corner of the addedCell's target destination
+     * @param y y coordinate of the left top corner of the addedCell's target destination
+     */
+    void concatCells(const vector<string> &addedCell, vector<string> &targetCell, int x, int y);
+
+    /**
+     * @brief
+     * generate the contents of the table's header
+     * @return string the contents of the header
+     */
+    string generateHeader();
+
+private:
+    int width;
+};
+
+/**
+ * @brief
+ * represents a player. holds data that is relevant to the player.
+ */
+class Player
+{
+public:
+    /**
+     * @brief
+     * construct a new Player object
+     */
+    Player();
+    /**
+     * @brief
+     * construct a new Player object
+     * @param _selectedPokemon
+     * pointer to the player's pokemon
+     */
+    Player(Pokemon *_selectedPokemon);
+    /**
+     * @brief
+     * get pointer to player's pokemon
+     * @return Pokemon* pointer to player's pokemon
+     */
+    Pokemon *getPokemon();
+    /**
+     * @brief
+     * get wether wether it's this player's turn
+     * @return true if it is this player's turn
+     * @return false if it is not this player's turn
+     */
+    bool getTurn() const;
+    /**
+     * @brief
+     * sets the player's turn
+     * @param _turn value to set
+     */
+    void setTurn(bool _turn);
+
+private:
+    // player's pokemon
+    Pokemon *selectedPokemon;
+    // player's turn
+    bool turn = false;
+};
+
 #pragma region pokemon declarations
+
+/**
+ * @brief
+ * represents charmander specie
+ */
 class Charmander : public Pokemon
 {
 public:
     Charmander(string _name);
 };
 
+/**
+ * @brief
+ * represents dratini specie
+ */
 class Dratini : public Pokemon
 {
 public:
     Dratini(string _name);
 };
 
+/**
+ * @brief
+ * represents eevee specie
+ */
 class Eevee : public Pokemon
 {
 public:
     Eevee(string _name);
 };
 
+/**
+ * @brief
+ * represent palkia  specie
+ */
 class Palkia : public Pokemon
 {
 public:
     Palkia(string _name);
 };
 
+/**
+ * @brief
+ * represent pikachu specie
+ */
 class Pikachu : public Pokemon
 {
 public:
@@ -301,6 +593,7 @@ string Element::getElementName(int element)
 #pragma endregion
 
 #pragma region pokemons
+
 #pragma region Charmander
 Charmander::Charmander(string _name) : Pokemon(_name)
 {
@@ -398,289 +691,192 @@ Pikachu::Pikachu(string _name) : Pokemon(_name)
 #pragma endregion
 
 #pragma endregion
+
+#pragma region Renderer
+Renderer::Renderer(int _width)
+{
+    width = _width;
+}
+
+int Renderer::getWidth() const
+{
+    return width;
+}
+
+string Renderer::stringifyPokemonBaseData(Pokemon *pokemon, bool turn)
+{
+    // self-explanatory
+    return pokemon->getSpecieName() + (turn ? " (*)" : "") +
+           "\nType: " + Element::getElementName(pokemon->getPokemonElement()) +
+           "\nHP: " + to_string(pokemon->getCurrentHP());
+}
+
+string Renderer::stringifyPokemonSkillData(Pokemon *pokemon)
+{
+    string result = "";
+    // repeat for no. of skills
+    for (int i = 0; i < pokemon->getSkillCnt(); ++i)
+    {
+        Skill *skillptr = pokemon->getSkill(i);
+        result += "(" + to_string(i) + ") " + skillptr->getName() + "\n";
+        result += "    - Type: " + Element::getElementName(skillptr->getSkillElement()) + "\n";
+        result += "    - Damage: " + to_string(skillptr->getBaseDamage()) + "\n";
+        result += "    - Count: " + to_string(skillptr->getTriesLeft()) + "(" + to_string(skillptr->getMaxTries()) + ")" + "\n";
+    }
+    // remove last \n
+    result.pop_back();
+    return result;
+}
+
+vector<string> Renderer::splitByNewlines(string content)
+{
+    vector<string> result;
+
+    string tmp;
+    // cycle through string
+    for (int i = 0; i < static_cast<int>(content.size()); ++i)
+    {
+        // if \n not encountered then add to content
+        if (content[i] != '\n')
+        {
+            tmp += content[i];
+        }
+        // \n encountered, store line, ignoring \n
+        else
+        {
+            result.push_back(tmp);
+            tmp = "";
+        }
+    }
+    // add to vector
+    result.push_back(tmp);
+    return result;
+}
+
+vector<string> Renderer::generateCell(string content, int cellWidth, int contentOffset)
+{
+    vector<string> cell;
+
+    vector<string> contentSplit = splitByNewlines(content);
+
+    // place horizontal line first
+    cell.push_back(genereateHorLine(cellWidth));
+    // add contetns of the cell to the vector
+    for (int i = 0; i < static_cast<int>(contentSplit.size()); ++i)
+    {
+        // start with table boundary
+        string line = "|";
+
+        // add offset
+        for (int j = 0; j < contentOffset; ++j)
+        {
+            line += " ";
+        }
+
+        // concat content with the line
+        line += contentSplit[i];
+
+        // add spaces to match width
+        for (int k = line.size(); k < cellWidth - 1; ++k)
+        {
+            line += " ";
+        }
+
+        // end with table boundary
+        line += "|";
+
+        // add to cell
+        cell.push_back(line);
+    }
+    // finish with a horizontal line as well
+    cell.push_back(genereateHorLine(cellWidth));
+    return cell;
+}
+
+string Renderer::genereateHorLine(int length)
+{
+    string result = "";
+    result += "+";
+    for (int i = 0; i < length - 2; ++i)
+    {
+        result += "-";
+    }
+    result += "+";
+    return result;
+}
+
+void Renderer::renderCell(const vector<string> &cell)
+{
+    // cycle through vector and cout each line
+    for (int i = 0; i < static_cast<int>(cell.size()); ++i)
+    {
+        cout << cell[i] << endl;
+    }
+}
+
+void Renderer::concatCells(const vector<string> &addedCell, vector<string> &targetCell, int x, int y)
+{
+    // we need to populate the vector to accomodate the added cell's y coordinates
+    for (int i = static_cast<int>(targetCell.size()) - 1; i < y + static_cast<int>(addedCell.size()) - 1; ++i)
+    {
+        targetCell.push_back("");
+    }
+
+    // for each line in added cell
+    for (int i = 0; i < static_cast<int>(addedCell.size()); ++i)
+    {
+        // poulate line at coordinates from length of line to y + length of target line length to accomodate targetCell's line
+        for (int j = static_cast<int>(targetCell[y + i].size()) - 1; j < x + static_cast<int>(addedCell[i].size()) - 1; ++j)
+        {
+            targetCell[y + i] += " ";
+        }
+
+        // replace spaces of targetCell with offset (y,x) with the contents of the added cell
+        for (int j = 0; j < static_cast<int>(addedCell[i].size()); ++j)
+        {
+            targetCell[y + i][j + x] = addedCell[i][j];
+        }
+    }
+}
+
+string Renderer::generateHeader()
+{
+    return ID + " " + NAME + " " + DEPARTMENT;
+}
+#pragma endregion
+
+#pragma region Player
+Player::Player()
+{
+    selectedPokemon = NULL;
+}
+
+Player::Player(Pokemon *_selectedPokemon)
+{
+    selectedPokemon = _selectedPokemon;
+}
+
+void Player::setTurn(bool _turn)
+{
+    turn = _turn;
+}
+
+bool Player::getTurn() const
+{
+    return turn;
+}
+
+Pokemon *Player::getPokemon()
+{
+    return selectedPokemon;
+}
+#pragma endregion
 #pragma endregion
 
 // student ID
 const string ID = "2023148006";
 const string NAME = "Luigi Cussigh";
 const string DEPARTMENT = "Computer Science";
-
-/**
- * @brief
- * represents renderers. renderers handle stuff related to output
- */
-class Renderer
-{
-public:
-    /**
-     * @brief
-     * construct a new Renderer object
-     * @param _width
-     * table's width
-     */
-    Renderer(int _width)
-    {
-        width = _width;
-    }
-
-    /**
-     * @brief
-     * get the table's width
-     * @return int
-     * table's width
-     */
-    int getWidth() const
-    {
-        return width;
-    }
-
-    /**
-     * @brief
-     * get pokemon's basic data as a string (doesnt end with a newline)
-     * @param pokemon pointer to the pokemon, the data of which is required
-     * @param turn places "(*)" if set to true
-     * @return string pokemon's stringified basic data
-     */
-    string stringifyPokemonBaseData(Pokemon *pokemon, bool turn)
-    {
-        // self-explanatory
-        return pokemon->getSpecieName() + (turn ? " (*)" : "") +
-               "\nType: " + Element::getElementName(pokemon->getPokemonElement()) +
-               "\nHP: " + to_string(pokemon->getCurrentHP());
-    }
-
-    /**
-     * @brief
-     * get pokemon's skill data as a string (doesnt end with a newline)
-     * @param pokemon pointer to the pokemon, the data of which is required
-     * @return string pokemon's stringified skill data
-     */
-    string stringifyPokemonSkillData(Pokemon *pokemon)
-    {
-        string result = "";
-        // repeat for no. of skills
-        for (int i = 0; i < pokemon->getSkillCnt(); ++i)
-        {
-            Skill *skillptr = pokemon->getSkill(i);
-            result += "(" + to_string(i) + ") " + skillptr->getName() + "\n";
-            result += "    - Type: " + Element::getElementName(skillptr->getSkillElement()) + "\n";
-            result += "    - Damage: " + to_string(skillptr->getBaseDamage()) + "\n";
-            result += "    - Count: " + to_string(skillptr->getTriesLeft()) + "(" + to_string(skillptr->getMaxTries()) + ")" + "\n";
-        }
-        // remove last \n
-        result.pop_back();
-        return result;
-    }
-
-    /**
-     * @brief
-     * splits a string into a vector of strings by newlines
-     * @param content the string, which requires splitting
-     * @return vector<string> the resulting vector of strings
-     */
-    vector<string> splitByNewlines(string content)
-    {
-        vector<string> result;
-
-        string tmp;
-        // cycle through string
-        for (int i = 0; i < static_cast<int>(content.size()); ++i)
-        {
-            // if \n not encountered then add to content
-            if (content[i] != '\n')
-            {
-                tmp += content[i];
-            }
-            // \n encountered, store line, ignoring \n
-            else
-            {
-                result.push_back(tmp);
-                tmp = "";
-            }
-        }
-        // add to vector
-        result.push_back(tmp);
-        return result;
-    }
-
-    /**
-     * @brief
-     * generate a cell (vector of strings)
-     * (cell means singular rectangle of a table)
-     * @param content cell's content (determines cell height)
-     * @param cellWidth cell's width
-     * @param contentOffset content's left-side offset
-     * @return vector<string> resulting cell
-     */
-    vector<string> generateCell(string content, int cellWidth, int contentOffset)
-    {
-        vector<string> cell;
-
-        vector<string> contentSplit = splitByNewlines(content);
-
-        // place horizontal line first
-        cell.push_back(genereateHorLine(cellWidth));
-        // add contetns of the cell to the vector
-        for (int i = 0; i < static_cast<int>(contentSplit.size()); ++i)
-        {
-            // start with table boundary
-            string line = "|";
-
-            // add offset
-            for (int j = 0; j < contentOffset; ++j)
-            {
-                line += " ";
-            }
-
-            // concat content with the line
-            line += contentSplit[i];
-
-            // add spaces to match width
-            for (int k = line.size(); k < cellWidth - 1; ++k)
-            {
-                line += " ";
-            }
-
-            // end with table boundary
-            line += "|";
-
-            // add to cell
-            cell.push_back(line);
-        }
-        // finish with a horizontal line as well
-        cell.push_back(genereateHorLine(cellWidth));
-        return cell;
-    }
-
-    /**
-     * @brief
-     * generates a table's horizontal line
-     * @param length length of the line
-     * @return string resulting line
-     */
-    string genereateHorLine(int length)
-    {
-        string result = "";
-        result += "+";
-        for (int i = 0; i < length - 2; ++i)
-        {
-            result += "-";
-        }
-        result += "+";
-        return result;
-    }
-
-    /**
-     * @brief
-     * renders cell to terminal
-     * @param cell cell that needs to be rendered
-     */
-    void renderCell(const vector<string> &cell)
-    {
-        // cycle through vector and cout each line
-        for (int i = 0; i < static_cast<int>(cell.size()); ++i)
-        {
-            cout << cell[i] << endl;
-        }
-    }
-
-    /**
-     * @brief
-     * concatinate cells into one
-     * @param addedCell the cell that is added to targetCell
-     * @param targetCell the cell that receives addedCell
-     * @param x x coordinate of the left top corner of the addedCell's target destination
-     * @param y y coordinate of the left top corner of the addedCell's target destination
-     */
-    void concatCells(const vector<string> &addedCell, vector<string> &targetCell, int x, int y)
-    {
-        // we need to populate the vector to accomodate the added cell's y coordinates
-        for (int i = static_cast<int>(targetCell.size()) - 1; i < y + static_cast<int>(addedCell.size()) - 1; ++i)
-        {
-            targetCell.push_back("");
-        }
-
-        // for each line in added cell
-        for (int i = 0; i < static_cast<int>(addedCell.size()); ++i)
-        {
-            // poulate line at coordinates from length of line to y + length of target line length to accomodate targetCell's line
-            for (int j = static_cast<int>(targetCell[y + i].size()) - 1; j < x + static_cast<int>(addedCell[i].size()) - 1; ++j)
-            {
-                targetCell[y + i] += " ";
-            }
-
-            // replace spaces of targetCell with offset (y,x) with the contents of the added cell
-            for (int j = 0; j < static_cast<int>(addedCell[i].size()); ++j)
-            {
-                targetCell[y + i][j + x] = addedCell[i][j];
-            }
-        }
-    }
-
-    /**
-     * @brief
-     * generate the contents of the table's header
-     * @return string the contents of the header
-     */
-    string generateHeader()
-    {
-        return ID + " " + NAME + " " + DEPARTMENT;
-    }
-
-private:
-    int width;
-};
-
-/**
- * @brief
- * represents a player. holds data that is relevant to the player.
- */
-class Player
-{
-public:
-    /**
-     * @brief
-     * construct a new Player object
-     */
-    Player()
-    {
-        selectedPokemon = NULL;
-    }
-    /**
-     * @brief
-     * construct a new Player object
-     * @param _selectedPokemon
-     * pointer to the player's pokemon
-     */
-    Player(Pokemon *_selectedPokemon)
-    {
-        selectedPokemon = _selectedPokemon;
-    }
-
-    // get pointer to player's pokemon
-    Pokemon *getPokemon()
-    {
-        return selectedPokemon;
-    }
-
-    // get wether wether it's this player's turn
-    bool getTurn() const
-    {
-        return turn;
-    }
-
-    // sets player's turn
-    void setTurn(bool _turn)
-    {
-        turn = _turn;
-    }
-
-private:
-    // player's pokemon
-    Pokemon *selectedPokemon;
-    // player's turn
-    bool turn = false;
-};
 
 int main(int argc, char *argv[])
 {
@@ -692,6 +888,7 @@ int main(int argc, char *argv[])
     Charmander charmander("charmander1");
     Palkia palkia("palkia1");
 
+    // put in array for easier access
     Pokemon *pokemon_arr[5] = {&pikachu, &dratini, &eevee, &charmander, &palkia};
 
     // players' selctions (defauts to pikachu and dratini for debugging purposes)
