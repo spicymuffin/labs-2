@@ -11,6 +11,7 @@
 #include <vector>
 #include <cmath>
 #include <cstdlib>
+#include <string>
 
 using namespace std;
 
@@ -449,7 +450,7 @@ string Skill::getEffectivenessTypeName(int defenderElement) const
     }
     else
     {
-        __throw_runtime_error("effectiveness modifier unrecognized");
+        throw std::runtime_error("effectiveness modifier unrecognized");
         exit(-1);
     }
 }
