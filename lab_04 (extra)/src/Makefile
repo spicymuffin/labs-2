@@ -11,7 +11,7 @@ NAME        := main
 # OBJS      object files
 #
 # CC        compiler
-# CFLAGS    compiler flags
+# CXXFLAGS  compiler flags
 # CPPFLAGS  preprocessor flags
 
 SRC_DIR     := lib
@@ -36,8 +36,8 @@ SRCS        := $(SRCS:%=$(SRC_DIR)/%)
 OBJS        := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 CC          := g++
-CFLAGS      := -Wall
-CPPFLAGS    := -I src/include
+CXXFLAGS    := -Wall 
+CPPFLAGS    := -I include/
 
 #------------------------------------------------#
 #   UTENSILS                                     #
@@ -63,12 +63,13 @@ DIR_DUP     = mkdir -p $(@D)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+	$(CC) $(OBJS) -o $(NAME) $(CPPFLAGS)
 	$(info CREATED $(NAME))
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(DIR_DUP)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+	echo $(CC) $(CXXFLAGS) $(CPPFLAGS) -c -o $@ $<
+	$(CC) $(CXXFLAGS) $(CPPFLAGS) -c -o $@ $<
 	$(info CREATED $@)
 
 clean:
