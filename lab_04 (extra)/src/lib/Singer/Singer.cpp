@@ -4,6 +4,10 @@
 
 using namespace std;
 
+Singer::Singer(string name) : Artist(name) {}
+
+Singer::~Singer() {}
+
 Music Singer::getFavoriteSong() { return _favoriteSong; }
 
 void Singer::setFavoriteSong(Music favoriteSong) { _favoriteSong = favoriteSong; }

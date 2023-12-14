@@ -9,11 +9,26 @@ using namespace std;
 // why isgroup definened in StayC.h but oh well...
 Group::Group(string name) : Artist(name) {}
 
+Group::~Group() {}
+
 vector<Singer> Group::getMembers() { return _members; }
 
 void Group::setMembers(vector<Singer> members) { _members = members; }
 
-string Group::getJobName() { return "GroupSinger"; }
+string Group::getName() { return Artist::getName(); }
+
+int Group::getPopularity() { return Artist::getPopularity(); }
+
+void Group::setPopularity(int popularity) { Artist::setPopularity(popularity); }
+
+string Group::getJobName()
+{
+    return "GroupSinger";
+}
+
+StayC::StayC() : Group("StayC") {}
+
+StayC::~StayC() {}
 
 StayC &StayC::instance()
 {

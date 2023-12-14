@@ -4,6 +4,10 @@
 
 using namespace std;
 
+YihyunCho::YihyunCho() : Actor("Yihyun") {}
+
+YihyunCho::~YihyunCho() {}
+
 YihyunCho &YihyunCho::instance()
 {
     static YihyunCho *yihyuncho = new YihyunCho();

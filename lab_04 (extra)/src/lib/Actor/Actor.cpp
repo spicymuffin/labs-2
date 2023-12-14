@@ -6,6 +6,8 @@ using namespace std;
 
 Actor::Actor(string name) : Artist(name) {}
 
+Actor::~Actor() {}
+
 Drama Actor::getMasterpiece() { return _masterpiece; }
 
 void Actor::setMasterpiece(Drama masterpiece) { _masterpiece = masterpiece; }
