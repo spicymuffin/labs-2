@@ -10,4 +10,4 @@ Drama Actor::getMasterpiece() { return _masterpiece; }
 
 void Actor::setMasterpiece(Drama masterpiece) { _masterpiece = masterpiece; }
 
-string Actor::getJobName() { return "actor"; }
+string Actor::getJobName() { return "Actor"; }

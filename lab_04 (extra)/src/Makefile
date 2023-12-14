@@ -29,14 +29,14 @@ SRCS        := \
 	Singer/StayC.cpp    \
 	Util/BestArtist.cpp \
 	Artist.cpp          \
-	Entertainer.cpp     \
-	MBTI.cpp            
+	Entertainers.cpp     \
+	MBTI.cpp
 
 SRCS        := $(SRCS:%=$(SRC_DIR)/%)
 OBJS        := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 CC          := g++
-CXXFLAGS    := -Wall 
+CXXFLAGS    := -Wall
 CPPFLAGS    := -I include/
 
 #------------------------------------------------#
@@ -90,12 +90,3 @@ re:
 .SILENT:
 
 ####################################### END_3 ####
-
-# all : $(TARGET)
-	
-# $(TARGET) :
-	
-# run :
-
-# clean :
-	

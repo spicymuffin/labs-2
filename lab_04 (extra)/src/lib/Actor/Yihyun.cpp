@@ -6,7 +6,7 @@ using namespace std;
 
 YihyunCho &YihyunCho::instance()
 {
-    YihyunCho *yihyuncho = new YihyunCho();
+    static YihyunCho *yihyuncho = new YihyunCho();
     return *yihyuncho;
 }
 

@@ -8,4 +8,4 @@ Music Singer::getFavoriteSong() { return _favoriteSong; }
 
 void Singer::setFavoriteSong(Music favoriteSong) { _favoriteSong = favoriteSong; }
 
-string Singer::getJobName() { return "singer"; }
+string Singer::getJobName() { return "Singer"; }
