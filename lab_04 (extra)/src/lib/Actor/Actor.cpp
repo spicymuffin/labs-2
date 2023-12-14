@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// de
 Actor::Actor(string name) : Artist(name) {}
 
 Actor::~Actor() {}

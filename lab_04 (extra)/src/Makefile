@@ -1,5 +1,3 @@
-####################################### BEG_3 ####
-
 NAME        := main
 
 #------------------------------------------------#
@@ -11,7 +9,7 @@ NAME        := main
 # OBJS      object files
 #
 # CC        compiler
-# CXXFLAGS  compiler flags
+# CXXFLAGS  compiler flags (for C++)
 # CPPFLAGS  preprocessor flags
 
 SRC_DIR     := lib
@@ -28,12 +26,10 @@ SRCS        := \
 	Singer/Singer.cpp   \
 	Singer/StayC.cpp    \
 	Util/BestArtist.cpp \
-	Artist.cpp          \
-	Entertainers.cpp     \
-	MBTI.cpp
+	Artist.cpp
 
 SRCS        := $(SRCS:%=$(SRC_DIR)/%)
-OBJS        := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJS        := $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
 CC          := g++
 CXXFLAGS    := -Wall
@@ -55,7 +51,7 @@ DIR_DUP     = mkdir -p $(@D)
 #------------------------------------------------#
 # all       default goal
 # $(NAME)   linking .o -> binary
-# %.o       compilation .c -> .o
+# %.o       compilation .cpp -> .o
 # clean     remove .o
 # fclean    remove .o + binary
 # re        remake default goal
@@ -63,6 +59,7 @@ DIR_DUP     = mkdir -p $(@D)
 all: $(NAME)
 
 $(NAME): $(OBJS)
+	echo $(CC) $(OBJS) -o $(NAME) $(CPPFLAGS)
 	$(CC) $(OBJS) -o $(NAME) $(CPPFLAGS)
 	$(info CREATED $(NAME))
 
@@ -73,6 +70,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(info CREATED $@)
 
 clean:
+	echo $(RM) $(OBJS)
 	$(RM) $(OBJS)
 
 fclean: clean
@@ -80,7 +78,11 @@ fclean: clean
 
 re:
 	$(MAKE) fclean
-	$(MAKE) all
+	$(MAKE) all 
+
+run:
+	echo ./$(NAME)
+	./$(NAME)
 
 #------------------------------------------------#
 #   SPEC                                         #
@@ -88,5 +90,3 @@ re:
 
 .PHONY: clean fclean re
 .SILENT:
-
-####################################### END_3 ####

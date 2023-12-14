@@ -5,17 +5,17 @@
 
 using namespace std;
 
-// define getName
+// implement getName
 string Artist::getName() { return _name; }
 
-// define getMBTI
+// implement getMBTI
 MBTI Artist::getMBTI() { return _mbti; }
 
-// define setMBTI
+// implement setMBTI
 void Artist::setMBTI(MBTI mbti) { _mbti = mbti; }
 
-// define getPopularity
+// implement getPopularity
 int Artist::getPopularity() { return _popularity; }
 
-// define setPopularity
+// implement setPopularity
 void Artist::setPopularity(int popularity) { _popularity = popularity; }
