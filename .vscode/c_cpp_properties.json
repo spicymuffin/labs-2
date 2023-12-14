@@ -3,7 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "lab_04 (extra)/src/include"
             ],
             "defines": [],
             "cStandard": "c17",
