@@ -26,6 +26,11 @@ const Vector2D Vector2D::getNormalized() const
     return Vector2D(_x, _y);
 }
 
+const bool operator==(const Vector2D &lhs, const Vector2D &rhs)
+{
+    return (lhs.x == rhs.x && lhs.y == rhs.y);
+}
+
 const Vector2D operator+(const Vector2D &lhs, const Vector2D &rhs)
 {
     return Vector2D(lhs.x + rhs.x, lhs.y + rhs.y);
@@ -67,7 +72,7 @@ Vector2D &Vector2D::operator++()
     return *this;
 }
 
-//postfix. increment variable but retutn not incremented
+// postfix. increment variable but retutn not incremented
 const Vector2D Vector2D::operator++(int)
 {
     Vector2D copy(*this);
@@ -88,3 +93,8 @@ const Vector2D Vector2D::operator--(int)
     operator--();
     return copy;
 }
+
+Vector2D Vector2D::up = Vector2D(0, 1);
+Vector2D Vector2D::down = Vector2D(0, -1);
+Vector2D Vector2D::left = Vector2D(-1, 0);
+Vector2D Vector2D::right = Vector2D(1, 0);

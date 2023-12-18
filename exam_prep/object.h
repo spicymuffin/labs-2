@@ -1,13 +1,13 @@
 #ifndef SHAPES_H
 #define SHAPES_H
 
-class Shape
+class Object
 {
 public:
 private:
 };
 
-class Rectangle : Shape
+class Rectangle : Object
 {
 public:
 private:

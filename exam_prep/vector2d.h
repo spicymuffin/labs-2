@@ -38,6 +38,11 @@ public:
     friend ostream &operator<<(ostream &outputStream, const Vector2D &rhs);
     friend istream &operator>>(istream &inputStream, Vector2D &rhs);
 
+    static Vector2D left;
+    static Vector2D right;
+    static Vector2D up;
+    static Vector2D down;
+
 private:
     float x;
     float y;

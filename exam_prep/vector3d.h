@@ -40,10 +40,19 @@ public:
     friend ostream &operator<<(ostream &outputStream, const Vector3D &rhs);
     friend istream &operator>>(istream &inputStream, Vector3D &rhs);
 
+    static Vector3D forward;
+    static Vector3D backward;
+    static Vector3D left;
+    static Vector3D right;
+    static Vector3D up;
+    static Vector3D down;
+
 private:
     float x;
     float y;
     float z;
 };
+
+
 
 #endif

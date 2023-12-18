@@ -13,7 +13,7 @@ public:
     void PrintData();
     static void PrintTotal();
     const static int GetTotalSold();
-    static void JustSoldTotal(); 
+    static void JustSoldTotal();
     const int GetSold();
     const int GetID();
     void SetSold(int _hotDogsSold);

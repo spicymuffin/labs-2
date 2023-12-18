@@ -1,0 +1,125 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Course
+{
+public:
+    Course();
+    Course(string _name, int _credits);
+
+    void setName(string _name);
+    string getName() const;
+
+private:
+    string name;
+    int credits;
+};
+
+Course::Course()
+{
+    name = "undefined";
+    credits = -1;
+}
+
+Course::Course(string _name, int _credits)
+{
+    name = _name;
+    credits = _credits;
+}
+
+void Course::setName(string _name)
+{
+    name = _name;
+}
+
+string Course::getName() const
+{
+    return name;
+}
+
+class Student
+{
+public:
+    Student(string _name, Course *_courseList, int _numCourses);
+    Student(string _name, int _numCourses);
+    ~Student();
+
+    void resetCoursees();
+
+    void setName(string _name);
+    string getName() const;
+
+    int getNumCoursees() const;
+
+    Student &Student::operator=(Student &rhs);
+
+private:
+    string name;
+    int numCourses;
+    Course *courseList;
+};
+
+Student::Student(string _name, Course *_courseList, int _numCourses)
+{
+    name = _name;
+    courseList = _courseList;
+    numCourses = _numCourses;
+}
+
+Student::Student(string _name, int _numCourses)
+{
+    name = _name;
+    numCourses = _numCourses;
+    courseList = new Course[_numCourses];
+    for (int i = 0; i < _numCourses; i++)
+    {
+        courseList[i] = Course();
+    }
+}
+
+Student::~Student()
+{
+    delete[] courseList;
+}
+
+void Student::resetCoursees()
+{
+    numCourses = 0;
+    delete[] courseList;
+    courseList = NULL;
+}
+
+void Student::setName(string _name)
+{
+    name = _name;
+}
+
+string Student::getName() const
+{
+    return name;
+}
+
+int Student::getNumCoursees() const
+{
+    return numCourses;
+}
+
+Student &Student::operator=(Student &rhs)
+{
+
+    resetCoursees();
+
+    name = rhs.name;
+    numCourses = rhs.numCourses;
+    courseList = new Course[numCourses];
+
+    for (int i = 0; i < numCourses; i++)
+    {
+        courseList[i] = rhs.courseList[i];
+    }
+
+    return *this;
+}
+

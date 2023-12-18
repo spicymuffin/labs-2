@@ -29,6 +29,11 @@ const Vector3D Vector3D::getNormalized() const
     return Vector3D(_x, _y, _z);
 }
 
+const bool operator==(const Vector3D &lhs, const Vector3D &rhs)
+{
+    return (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z);
+}
+
 const Vector3D operator+(const Vector3D &lhs, const Vector3D &rhs)
 {
     return Vector3D(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z);
@@ -94,3 +99,10 @@ const Vector3D Vector3D::operator--(int)
     operator--();
     return copy;
 }
+
+Vector3D Vector3D::forward(1, 0, 0);
+Vector3D Vector3D::backward(-1, 0, 0);
+Vector3D Vector3D::left(0, -1, 0);
+Vector3D Vector3D::right(0, 1, 0);
+Vector3D Vector3D::up(0, 0, 1);
+Vector3D Vector3D::down(0, 0, -1);

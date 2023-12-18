@@ -32,4 +32,3 @@ void HotDogStand::SetSold(int _hotDogsSold) { hotDogsSold = _hotDogsSold; };
 void HotDogStand::SetID(int _ID) { ID = _ID; };
 
 int HotDogStand::hotDogsSoldTotal = 0;
-
