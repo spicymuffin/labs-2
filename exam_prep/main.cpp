@@ -120,6 +120,71 @@ string danya(Pet *danya2)
     return danya2->makeSound();
 }
 
+template <typename T>
+void swapValues(T &val1, T &val2)
+{
+    T temp = val1;
+    val1 = val2;
+    val2 = temp;
+}
+
+template <typename T>
+class Pair
+{
+public:
+    Pair() = default;
+    Pair(T _element1, T _element2);
+
+    T get1() const;
+    T get2() const;
+
+    void set1(T _element);
+    void set2(T _element);
+
+    const T addElements() const;
+
+protected:
+    T element1;
+    T element2;
+};
+
+template <typename T>
+Pair<T>::Pair(T _element1, T _element2)
+{
+    element1 = _element1;
+    element2 = _element2;
+}
+
+template <typename T>
+T Pair<T>::get1() const
+{
+    return element1;
+}
+
+template <typename T>
+T Pair<T>::get2() const
+{
+    return element2;
+}
+
+template <typename T>
+void Pair<T>::set1(T _element)
+{
+    element1 = _element;
+}
+
+template <typename T>
+void Pair<T>::set2(T _element)
+{
+    element2 = _element;
+}
+
+template <typename T>
+const T Pair<T>::addElements() const
+{
+    return element1 + element2;
+}
+
 int main(int argc, char *argv[])
 {
     // Vector2D a;
@@ -181,18 +246,61 @@ int main(int argc, char *argv[])
 
     // print_canvas(canvas, h, w);
 
-    Dog dog("max", Date(2023, 11, 15), "german shepard");
-    Cat cat("mishka", Date(2005, 1, 2), "english longhair");
+    // Dog dog("max", Date(2023, 11, 15), "german shepard");
+    // Cat cat("mishka", Date(2005, 1, 2), "english longhair");
 
-    Dog *dog_ptr = &dog;
-    Cat *cat_ptr = &cat;
+    // Dog *dog_ptr = &dog;
+    // Cat *cat_ptr = &cat;
 
-    Pet *ppet;
-    ppet = dog_ptr;
+    // Pet *ppet;
+    // ppet = dog_ptr;
 
-    cout << dog_ptr->makeSound() << endl;
-    cout << danya(dog_ptr) << endl;
-    cout << danya(cat_ptr) << endl;
+    // cout << dog_ptr->makeSound() << endl;
+    // cout << danya(dog_ptr) << endl;
+    // cout << danya(cat_ptr) << endl;
+
+    int *p1, *p2;
+
+    p1 = new int;
+    p2 = new int;
+
+    *p1 = 10;
+    *p2 = 20;
+
+    cout << *p1 << " " << *p2 << endl;
+
+    *p1 = *p2;
+
+    cout << *p1 << " " << *p2 << endl;
+
+    *p1 = 30;
+
+    cout << *p1 << " " << *p2 << endl;
+
+    int v1 = 10;
+    int v2 = 69;
+
+    cout << v1 << " " << v2 << endl;
+    swapValues(v1, v2);
+    cout << v1 << " " << v2 << endl;
+
+    typedef int *intptr;
+
+    intptr pp1, pp2;
+
+    pp1 = &v1;
+
+    cout << *pp1 << endl;
+
+    Pair<int> pair1 = Pair(1, 2);
+
+    cout << pair1.addElements() << endl;
+
+    Pair<int> pair2 = Pair(1, 3);
+
+    Pair<Pair<int>> pairpair = Pair(pair1, pair2);
+
+    cout << pairpair << endl;
 
     return 0;
 }

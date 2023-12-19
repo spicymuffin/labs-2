@@ -123,3 +123,4 @@ Student &Student::operator=(Student &rhs)
     return *this;
 }
 
+Vector2D &Vector2D::operator=(const Vector2D &rhs);

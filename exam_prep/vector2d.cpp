@@ -94,6 +94,13 @@ const Vector2D Vector2D::operator--(int)
     return copy;
 }
 
+Vector2D &Vector2D::operator=(const Vector2D &rhs)
+{
+    x = rhs.x;
+    y = rhs.y;
+    return *this;
+}
+
 Vector2D Vector2D::up = Vector2D(0, 1);
 Vector2D Vector2D::down = Vector2D(0, -1);
 Vector2D Vector2D::left = Vector2D(-1, 0);
